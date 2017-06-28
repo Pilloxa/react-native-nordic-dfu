@@ -1,4 +1,4 @@
-# react-native-nordic-dfu
+# react-native-nordic-dfu [![CircleCI](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu.svg?style=svg)](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu)
 
 ## Getting started
 
