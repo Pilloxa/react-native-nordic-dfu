@@ -22,10 +22,10 @@ For more info about the DFU process, see: [Resources](#resources)
 
 Starts the DFU process
 
-Observe: The peripheral must have been connected already so that the 
+Observe: The peripheral must have been discovered by the native BLE side so that the 
 bluetooth stack knows about it. This library will not do a scan but only
-the actual connect and then the transfer. See the example project to see
-how it can be done.
+the actual connect and then the transfer. See the example project to see how it can be
+done in React Native.
 
 **Parameters**
 
@@ -59,11 +59,11 @@ Event emitter for DFU state and progress events
 ```javascript
 import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
 
-DFUEmitter.addlistener("DFUProgress", progress => {
-  console.log("DFU progress:", progress);
+DFUEmitter.addlistener("DFUProgress",({percent, currentPart, partsTotal, avgSpeed, speed}) => {
+  console.log("DFU progress: " + percent +"%");
 });
 
-DFUEmitter.addListener("DFUStateChanged", state => {
+DFUEmitter.addListener("DFUStateChanged", ({state}) => {
   console.log("DFU State:", state);
 })
 ```
