@@ -1,0 +1,9 @@
+rootProject.name = 'NordicDFUExample'
+include ':react-native-fetch-blob'
+project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
+include ':react-native-nordic-dfu'
+project(':react-native-nordic-dfu').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-nordic-dfu/android')
+include ':react-native-ble-manager'
+project(':react-native-ble-manager').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-ble-manager/android')
+
+include ':app'

@@ -1,18 +1,39 @@
-
 {
   "name": "react-native-nordic-dfu",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",
+  "url": "https://github.com/Pilloxa/react-native-nordic-dfu",
+  "repository": "Pilloxa/react-native-nordic-dfu",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\"",
+    "precommit": "lint-staged",
+    "document": "documentation readme --readme-file README.md -s \"API\" -g"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "dfu",
+    "nordic"
   ],
-  "author": "",
-  "license": "",
+  "author": "Viktor Eriksson <viktor.eriksson2@gmail.com>",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2"
+  },
+  "devDependencies": {
+    "documentation": "^4.0.0-rc.1",
+    "husky": "^0.13.3",
+    "lint-staged": "^3.4.0",
+    "prettier": "^1.2.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "index.js": [
+      "npm run document",
+      "git add"
+    ]
   }
 }
