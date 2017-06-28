@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.pilloxa.RNNordicDfuPackage;
+import com.pilloxa.dfu.RNNordicDfuPackage;
 import it.innove.BleManagerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
