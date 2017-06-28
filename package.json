@@ -33,7 +33,7 @@
     ],
     "index.js": [
       "npm run document",
-      "git add"
+      "git add README.md"
     ]
   }
 }

@@ -1,7 +1,14 @@
+/**
+ * An example project that downloads a zip file, connects to a device and then flashes
+ * it.
+ */
+
 import React, { Component } from "react";
 import {
   AppRegistry,
   TouchableHighlight,
+  NativeModules,
+  NativeEventEmitter,
   StyleSheet,
   Text,
   View,
@@ -9,63 +16,122 @@ import {
 } from "react-native";
 import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
 import RNFetchBlob from "react-native-fetch-blob";
+import BleManager from "react-native-ble-manager";
+
+const BleManagerModule = NativeModules.BleManager;
+const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
+const DEVICE_ID = "C3:53:A0:31:2F:14";
+
 const FB = RNFetchBlob.config({
   fileCache: true,
   appendExt: "zip"
 });
 
-export default class NordicDFUExample extends Component {
+class NordicDFUExample extends Component {
   constructor(props) {
     super(props);
+    this.handleDeviceDiscovered = this.handleDeviceDiscovered.bind(this);
+    this.startScan = this.startScan.bind(this);
+    this.handleStopScan = this.handleStopScan.bind(this);
     this.state = {
       imagefile: false,
+      scanning: false,
+      deviceFound: false,
       dfuState: "Not started",
       progress: 0
     };
   }
 
   componentDidMount() {
-    DFUEmitter.addListener("DFUProgress", progress => {
-      console.log("DFU progress:", progress);
-      this.setState({ progress: progress.percent });
+    DFUEmitter.addListener("DFUProgress", ({ percent }) => {
+      console.log("DFU progress:", percent);
+      this.setState({ progress: percent });
     });
-    DFUEmitter.addListener("DFUStateChanged", state => {
-      console.log("DFU STATE:", state);
-      this.setState({ dfuState: state.state });
+    DFUEmitter.addListener("DFUStateChanged", ({ state }) => {
+      console.log("DFU state:", state);
+      this.setState({ dfuState: state });
     });
+
     FB.fetch("GET", "http://localhost:1234/app.zip").then(res => {
       console.log("file saved to", res.path());
       this.setState({ imagefile: res.path() });
     });
+
+    BleManager.start({ showAlert: false, allowDuplicates: false });
+    bleManagerEmitter.addListener("BleManagerStopScan", this.handleStopScan);
+    bleManagerEmitter.addListener(
+      "BleManagerDiscoverPeripheral",
+      this.handleDeviceDiscovered
+    );
+    this.startScan();
   }
 
+  // #### DFU #######################################################
+
   startDFU() {
-    console.log("STarting DFU");
+    console.log("Starting DFU");
     NordicDFU.startDFU({
-      deviceAddress: "C3:53:A0:31:2F:14",
+      deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
       filePath: this.state.imagefile
     })
-      .then(res => console.log("TRANSFERDONE:", res))
+      .then(res => console.log("Transfer done: ", res))
       .catch(console.log);
   }
 
+  // #### BLUETOOTH #################################################
+
+  handleDeviceDiscovered({ id }) {
+    if (id == DEVICE_ID) {
+      this.setState({
+        deviceFound: true,
+        scanning: false
+      });
+    }
+  }
+
+  handleStopScan() {
+    console.log("Scan is stopped");
+    if (this.state.scanning) {
+      this.startScan();
+    }
+  }
+
+  startScan() {
+    BleManager.scan([], 3, true).then(results => {
+      console.log("Scanning...");
+      this.setState({ scanning: true });
+    });
+  }
+
+  // #### RENDER #########################################################
+
   render() {
-    console.log("FILE:" + this.state.imagefile);
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           {this.state.dfuState}
         </Text>
         <Text style={styles.welcome}>
-          {this.state.progress + " %"}
+          {"DFU progress: " + this.state.progress + " %"}
         </Text>
-        <TouchableHighlight
-          style={{ padding: 10, backgroundColor: "grey" }}
-          onPress={this.startDFU.bind(this)}
-        >
-          <Text style={{ color: "white" }}>Start DFU</Text>
-        </TouchableHighlight>
+        <Text>
+          {this.state.scanning ? "Scanning for: " + DEVICE_ID : "Not scanning"}
+        </Text>
+        <Text>
+          {this.state.deviceFound
+            ? "Found device: " + DEVICE_ID
+            : "Device not found"}
+        </Text>
+        <Text />
+        {this.state.deviceFound
+          ? <TouchableHighlight
+              style={{ padding: 10, backgroundColor: "grey" }}
+              onPress={this.startDFU.bind(this)}
+            >
+              <Text style={{ color: "white" }}>Start DFU</Text>
+            </TouchableHighlight>
+          : null}
       </View>
     );
   }

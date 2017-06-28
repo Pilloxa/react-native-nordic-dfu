@@ -12,6 +12,12 @@ function rejectPromise(message) {
 /**
  * 
  * Starts the DFU process
+ *
+ * Observe: The peripheral must have been discovered by the native BLE side so that the 
+ * bluetooth stack knows about it. This library will not do a scan but only
+ * the actual connect and then the transfer. See the example project to see how it can be
+ * done in React Native.
+ * 
  * 
  * @param {Object} obj
  * @param {string} obj.deviceAddress The MAC address for the device that should be updated
@@ -49,11 +55,11 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
  * @example
  * import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
  * 
- * DFUEmitter.addlistener("DFUProgress", progress => {
- *   console.log("DFU progress:", progress);
+ * DFUEmitter.addlistener("DFUProgress",({percent, currentPart, partsTotal, avgSpeed, speed}) => {
+ *   console.log("DFU progress: " + percent +"%");
  * });
  * 
- * DFUEmitter.addListener("DFUStateChanged", state => {
+ * DFUEmitter.addListener("DFUStateChanged", ({state}) => {
  *   console.log("DFU State:", state);
  * })
  */
