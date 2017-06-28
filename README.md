@@ -1,5 +1,11 @@
 # react-native-nordic-dfu [![CircleCI](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu.svg?style=svg)](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu)
 
+This library allows you to do a Device Firmware Update (DFU) of your nrf51 or 
+nrf52 chip from Nordic Semiconductor. It currently only works for Android but 
+the iOS functionality is on the way.
+
+For more info about the DFU process, see: [Resources](#resources)
+
 ## Getting started
 
 `$ yarn add react-native-nordic-dfu`
@@ -82,3 +88,11 @@ See: [example/index.js](example/index.android.js)
         project(':react-native-nordic-dfu').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-nordic-dfu/android')
 3.  Insert the following lines inside the dependencies block in `android/app/build.gradle`:
           compile project(':react-native-nordic-dfu')
+
+## Resources
+
+- [DFU Introduction](http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/examples_ble_dfu.html?cp=6_0_0_4_3_1 "BLE Bootloader/DFU")
+- [Secure DFU Introduction](http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v12.0.0/ble_sdk_app_dfu_bootloader.html?cp=4_0_0_4_3_1 "BLE Secure DFU Bootloader")
+- [How to create init packet](https://github.com/NordicSemiconductor/Android-nRF-Connect/tree/master/init%20packet%20handling "Init packet handling")
+- [nRF51 Development Kit (DK)](http://www.nordicsemi.com/eng/Products/nRF51-DK "nRF51 DK") (compatible with Arduino Uno Revision 3)
+- [nRF52 Development Kit (DK)](http://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52-DK "nRF52 DK") (compatible with Arduino Uno Revision 3)
