@@ -4,6 +4,8 @@ This library allows you to do a Device Firmware Update (DFU) of your nrf51 or
 nrf52 chip from Nordic Semiconductor. It currently only works for Android but 
 the iOS functionality is on the way.
 
+WARNING: The API might change when the iOS functionality is added.
+
 For more info about the DFU process, see: [Resources](#resources)
 
 ## Getting started
