@@ -1,9 +1,8 @@
 
-package com.pilloxa;
+package com.pilloxa.dfu;
 
 import android.app.NotificationManager;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;

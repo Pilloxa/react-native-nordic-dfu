@@ -1,4 +1,4 @@
-package com.pilloxa;
+package com.pilloxa.dfu;
 
 import android.app.Activity;
 import android.content.Intent;

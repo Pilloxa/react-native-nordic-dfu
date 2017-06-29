@@ -1,5 +1,5 @@
 
-package com.pilloxa;
+package com.pilloxa.dfu;
 
 import java.util.Arrays;
 import java.util.Collections;
