@@ -1,7 +1,11 @@
-import { NativeModules, NativeEventEmitter } from "react-native";
-
+import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 const { RNNordicDfu } = NativeModules;
-const NordicDFU = { startDFU };
+const NordicDFU = Platform.select({
+  android: startDFU,
+  ios: () => {
+    console.warn("iOS not yet supported");
+  }
+});
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
@@ -63,6 +67,13 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
  *   console.log("DFU State:", state);
  * })
  */
-const DFUEmitter = new NativeEventEmitter(RNNordicDfu);
+const DFUEmitter =
+  Platform.OS == "ios"
+    ? {
+        addListener: () => {
+          console.warn("iOS not yet supported");
+        }
+      }
+    : new NativeEventEmitter(RNNordicDfu);
 
 export { NordicDFU, DFUEmitter };
