@@ -1,11 +1,13 @@
 import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 const { RNNordicDfu } = NativeModules;
-const NordicDFU = Platform.select({
-  android: startDFU,
-  ios: () => {
-    console.warn("iOS not yet supported");
-  }
-});
+const NordicDFU = {
+  startDFU: Platform.select({
+    android: startDFU,
+    ios: () => {
+      console.warn("iOS not yet supported");
+    }
+  })
+};
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
