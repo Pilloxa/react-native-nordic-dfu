@@ -1,11 +1,9 @@
-
-#if __has_include("RCTBridgeModule.h")
-#import "RCTBridgeModule.h"
-#else
+#import <CoreBluetooth/CoreBluetooth.h>
 #import <React/RCTBridgeModule.h>
-#endif
+#import <React/RCTEventEmitter.h>
 
-@interface RNNordicDfu : NSObject <RCTBridgeModule>
+@interface RNNordicDfu : RCTEventEmitter<RCTBridgeModule>
+
+@property (strong, nonatomic) CBCentralManager * centralManager;
 
 @end
-  

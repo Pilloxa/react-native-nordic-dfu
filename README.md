@@ -24,7 +24,7 @@ For more info about the DFU process, see: [Resources](#resources)
 
 Starts the DFU process
 
-Observe: The peripheral must have been discovered by the native BLE side so that the 
+Observe: The peripheral must have been discovered by the native BLE side so that the
 bluetooth stack knows about it. This library will not do a scan but only
 the actual connect and then the transfer. See the example project to see how it can be
 done in React Native.

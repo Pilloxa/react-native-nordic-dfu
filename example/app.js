@@ -21,7 +21,7 @@ import BleManager from "react-native-ble-manager";
 
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
-const DEVICE_ID = "C3:53:A0:31:2F:14";
+const DEVICE_ID = "FECC157C-3069-47F0-85F1-B9DBA61A8C88";
 
 const FB = RNFetchBlob.config({
   fileCache: true,
@@ -74,7 +74,7 @@ export default class NordicDFUExample extends Component {
     NordicDFU.startDFU({
       deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
-      filePath: this.state.imagefile
+      filePath: "some-file-path"
     })
       .then(res => console.log("Transfer done: ", res))
       .catch(console.log);
