@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A517092B1F43369A00191412 /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A517092A1F43369A00191412 /* Zip.framework */; };
+		A517092D1F4336B200191412 /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A517092C1F4336B200191412 /* iOSDFULibrary.framework */; };
 		B3E7B58A1CC2AC0600A0062D /* RNNordicDfu.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNNordicDfu.m */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNNordicDfu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNNordicDfu.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A517092A1F43369A00191412 /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = "../../../Library/Developer/Xcode/DerivedData/Zip-hhnuqeamwukfcdgvfwbpvbeukfzr/Build/Products/Debug-iphonesimulator/Zip.framework"; sourceTree = "<group>"; };
+		A517092C1F4336B200191412 /* iOSDFULibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOSDFULibrary.framework; path = "../../../Library/Developer/Xcode/DerivedData/iOSDFULibrary-hjshsbivzhjovjfurgujqrvfrdmf/Build/Products/Debug-iphonesimulator/iOSDFULibrary.framework"; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNNordicDfu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNNordicDfu.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNNordicDfu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNNordicDfu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A517092D1F4336B200191412 /* iOSDFULibrary.framework in Frameworks */,
+				A517092B1F43369A00191412 /* Zip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,10 +56,20 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				A51708E41F4331E200191412 /* Frameworks */,
 				B3E7B5881CC2AC0600A0062D /* RNNordicDfu.h */,
 				B3E7B5891CC2AC0600A0062D /* RNNordicDfu.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		A51708E41F4331E200191412 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A517092C1F4336B200191412 /* iOSDFULibrary.framework */,
+				A517092A1F43369A00191412 /* Zip.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,8 +212,9 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
@@ -212,6 +229,7 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
