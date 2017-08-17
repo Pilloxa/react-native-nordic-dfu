@@ -1,5 +1,5 @@
 #import "RNNordicDfu.h"
-#import <iOSDFULibrary/iOSDFULibrary-Swift.h>
+#import "iOSDFULibrary-Swift.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @implementation RNNordicDfu

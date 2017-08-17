@@ -1,0 +1,10 @@
+framework module iOSDFULibrary {
+  umbrella header "iOSDFULibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module iOSDFULibrary.Swift {
+    header "iOSDFULibrary-Swift.h"
+}

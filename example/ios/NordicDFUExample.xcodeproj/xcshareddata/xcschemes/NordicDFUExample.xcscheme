@@ -28,6 +28,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "58B511DA1A9E6C8500147676"
+               BuildableName = "libRNNordicDfu.a"
+               BlueprintName = "RNNordicDfu"
+               ReferencedContainer = "container:../node_modules/react-native-nordic-dfu/ios/RNNordicDfu.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "NordicDFUExample.app"
                BlueprintName = "NordicDFUExample"

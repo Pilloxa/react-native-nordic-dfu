@@ -10,72 +10,6 @@
 		B3E7B58A1CC2AC0600A0062D /* RNNordicDfu.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNNordicDfu.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A51B3F581F44460000BD2177 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6D97C1BEFF229002C0205;
-			remoteInfo = "iOSDFULibrary-iOS";
-		};
-		A51B3F5A1F44460000BD2177 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6DA0F1BF000BD002C0205;
-			remoteInfo = "iOSDFULibrary-macOS";
-		};
-		A51B3F5C1F44460000BD2177 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52D6D9861BEFF229002C0205;
-			remoteInfo = "iOSDFULibrary-iOS Tests";
-		};
-		A51B3F5E1F44460000BD2177 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DD75027A1C68FCFC006590AF;
-			remoteInfo = "iOSDFULibrary-macOS Tests";
-		};
-		A5EF71741F4592450029A624 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5EF716C1F4592450029A624 /* Zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 347E3A741C1DFFB500A11FD3;
-			remoteInfo = Zip;
-		};
-		A5EF71761F4592450029A624 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5EF716C1F4592450029A624 /* Zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 347E3A7E1C1DFFB500A11FD3;
-			remoteInfo = ZipTests;
-		};
-		A5EF71781F4592450029A624 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5EF716C1F4592450029A624 /* Zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 343F50FF1C8DAEEC0028C434;
-			remoteInfo = "Zip OSX";
-		};
-		A5EF717A1F4592450029A624 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5EF716C1F4592450029A624 /* Zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 343F51081C8DAEEC0028C434;
-			remoteInfo = "Zip OSXTests";
-		};
-		A5EF717C1F4592450029A624 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5EF716C1F4592450029A624 /* Zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 342545B51CE525B200336074;
-			remoteInfo = "Zip tvOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -90,8 +24,6 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNNordicDfu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNNordicDfu.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSDFULibrary.xcodeproj; path = ../node_modules/iOSDFULibrary/iOSDFULibrary.xcodeproj; sourceTree = "<group>"; };
-		A5EF716C1F4592450029A624 /* Zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Zip.xcodeproj; path = ../node_modules/Zip/Zip.xcodeproj; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNNordicDfu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNNordicDfu.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNNordicDfu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNNordicDfu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,41 +52,8 @@
 			children = (
 				B3E7B5881CC2AC0600A0062D /* RNNordicDfu.h */,
 				B3E7B5891CC2AC0600A0062D /* RNNordicDfu.m */,
-				A51708E41F4331E200191412 /* Libraries */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		A51708E41F4331E200191412 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				A5EF716C1F4592450029A624 /* Zip.xcodeproj */,
-				A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
-		A51B3F521F44460000BD2177 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A51B3F591F44460000BD2177 /* iOSDFULibrary.framework */,
-				A51B3F5B1F44460000BD2177 /* iOSDFULibrary.framework */,
-				A51B3F5D1F44460000BD2177 /* iOSDFULibrary-iOS Tests.xctest */,
-				A51B3F5F1F44460000BD2177 /* iOSDFULibrary-macOS Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A5EF716D1F4592450029A624 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5EF71751F4592450029A624 /* Zip.framework */,
-				A5EF71771F4592450029A624 /* ZipTests.xctest */,
-				A5EF71791F4592450029A624 /* Zip.framework */,
-				A5EF717B1F4592450029A624 /* Zip OSXTests.xctest */,
-				A5EF717D1F4592450029A624 /* Zip.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,88 +100,12 @@
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A51B3F521F44460000BD2177 /* Products */;
-					ProjectRef = A51B3F511F44460000BD2177 /* iOSDFULibrary.xcodeproj */;
-				},
-				{
-					ProductGroup = A5EF716D1F4592450029A624 /* Products */;
-					ProjectRef = A5EF716C1F4592450029A624 /* Zip.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNNordicDfu */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A51B3F591F44460000BD2177 /* iOSDFULibrary.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = iOSDFULibrary.framework;
-			remoteRef = A51B3F581F44460000BD2177 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A51B3F5B1F44460000BD2177 /* iOSDFULibrary.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = iOSDFULibrary.framework;
-			remoteRef = A51B3F5A1F44460000BD2177 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A51B3F5D1F44460000BD2177 /* iOSDFULibrary-iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "iOSDFULibrary-iOS Tests.xctest";
-			remoteRef = A51B3F5C1F44460000BD2177 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A51B3F5F1F44460000BD2177 /* iOSDFULibrary-macOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "iOSDFULibrary-macOS Tests.xctest";
-			remoteRef = A51B3F5E1F44460000BD2177 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5EF71751F4592450029A624 /* Zip.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Zip.framework;
-			remoteRef = A5EF71741F4592450029A624 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5EF71771F4592450029A624 /* ZipTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ZipTests.xctest;
-			remoteRef = A5EF71761F4592450029A624 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5EF71791F4592450029A624 /* Zip.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Zip.framework;
-			remoteRef = A5EF71781F4592450029A624 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5EF717B1F4592450029A624 /* Zip OSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Zip OSXTests.xctest";
-			remoteRef = A5EF717A1F4592450029A624 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5EF717D1F4592450029A624 /* Zip.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Zip.framework;
-			remoteRef = A5EF717C1F4592450029A624 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -373,13 +196,13 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../node_modules/iOSDFULibrary/**",
+					"$(PROJECT_DIR)/iOSDFULibrary.framework/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -391,13 +214,13 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../node_modules/iOSDFULibrary/**",
+					"$(PROJECT_DIR)/iOSDFULibrary.framework/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";

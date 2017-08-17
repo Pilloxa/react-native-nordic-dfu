@@ -36,9 +36,15 @@
 		2DCD954D1E0B4F2C00145EB5 /* NordicDFUExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NordicDFUExampleTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		9AB161DFE7D748FAB1351B57 /* libRNNordicDfu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C478D3C0C046FCA41FF5CE /* libRNNordicDfu.a */; };
-		AE623A88EB414544A160E387 /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A60D40D71C74C40A5A95364 /* libBleManager.a */; };
-		EB5C14AE0DF34B45BD80C888 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D4C261E1D04A0BABFE3C56 /* libRNFetchBlob.a */; };
+		A53E61B01F45CF2B0001EB4F /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6F99C1F20BBCA00FFEA72 /* libBleManager.a */; };
+		A53E61BA1F45D5330001EB4F /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6F9BE1F20BBCA00FFEA72 /* libRNFetchBlob.a */; };
+		A53E61BD1F45D6480001EB4F /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; };
+		A53E61BE1F45D6480001EB4F /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; };
+		A53E61BF1F45D6510001EB4F /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; };
+		A53E61C01F45D6510001EB4F /* iOSDFULibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A53E61C11F45D6510001EB4F /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; };
+		A53E61C21F45D6510001EB4F /* Zip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5D487F01F45CB2F00BDF5FE /* libRNNordicDfu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6F9C11F20BBCA00FFEA72 /* libRNNordicDfu.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +274,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A53E61B91F45D2970001EB4F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A53E61C21F45D6510001EB4F /* Zip.framework in Embed Frameworks */,
+				A53E61C01F45D6510001EB4F /* iOSDFULibrary.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -278,7 +299,6 @@
 		00E356EE1AD99517003FC87E /* NordicDFUExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NordicDFUExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* NordicDFUExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NordicDFUExampleTests.m; sourceTree = "<group>"; };
-		03C478D3C0C046FCA41FF5CE /* libRNNordicDfu.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNordicDfu.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* NordicDFUExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NordicDFUExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,12 +311,12 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* NordicDFUExample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NordicDFUExample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* NordicDFUExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NordicDFUExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		55D4C261E1D04A0BABFE3C56 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
-		5A60D40D71C74C40A5A95364 /* libBleManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBleManager.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		62B7EF134E8F4D7988A4717A /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOSDFULibrary.framework; path = "../node_modules/react-native-nordic-dfu/ios/iOSDFULibrary.framework"; sourceTree = "<group>"; };
+		A53E61BC1F45D6480001EB4F /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = "../node_modules/react-native-nordic-dfu/ios/Zip.framework"; sourceTree = "<group>"; };
 		E27B07007BFD4C05B2AF44BD /* RNNordicDfu.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNNordicDfu.xcodeproj; path = "../node_modules/react-native-nordic-dfu/ios/RNNordicDfu.xcodeproj"; sourceTree = "<group>"; };
 		EEE0724BE51248DEB5D0DBDF /* BleManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BleManager.xcodeproj; path = "../node_modules/react-native-ble-manager/ios/BleManager.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -314,20 +334,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D487F01F45CB2F00BDF5FE /* libRNNordicDfu.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				A53E61BD1F45D6480001EB4F /* iOSDFULibrary.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
+				A53E61BF1F45D6510001EB4F /* iOSDFULibrary.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				A53E61C11F45D6510001EB4F /* Zip.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				A53E61BE1F45D6480001EB4F /* Zip.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				AE623A88EB414544A160E387 /* libBleManager.a in Frameworks */,
-				9AB161DFE7D748FAB1351B57 /* libRNNordicDfu.a in Frameworks */,
-				EB5C14AE0DF34B45BD80C888 /* libRNFetchBlob.a in Frameworks */,
+				A53E61B01F45CF2B0001EB4F /* libBleManager.a in Frameworks */,
+				A53E61BA1F45D5330001EB4F /* libRNFetchBlob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +539,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */,
+				A53E61BC1F45D6480001EB4F /* Zip.framework */,
 				13B07FAE1A68108700A75B9A /* NordicDFUExample */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NordicDFUExampleTests */,
@@ -588,6 +614,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				A53E61B91F45D2970001EB4F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1152,10 +1179,16 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = X8M4Z7CAY5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-ble-manager/ios/**",
@@ -1163,7 +1196,9 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 				);
 				INFOPLIST_FILE = NordicDFUExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1171,6 +1206,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = NordicDFUExample;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1178,9 +1214,15 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X8M4Z7CAY5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-ble-manager/ios/**",
@@ -1188,7 +1230,9 @@
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 				);
 				INFOPLIST_FILE = NordicDFUExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1196,6 +1240,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = NordicDFUExample;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
