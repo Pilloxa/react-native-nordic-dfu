@@ -82,9 +82,10 @@ See: [example/index.js](example/index.android.js)
 2.  Go to `node_modules` ➜ `react-native-nordic-dfu` and add `RNNordicDfu.xcodeproj`
 3.  In XCode, in the project navigator, select your project. Add `libRNNordicDfu.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4.  Drag and drop `Zip.framework` and `iOSDFULibrary.framework` into your project
-5.  Add both frameworks under `[your project] > General > Embedded binaries`
-6.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
-7.  Run your project (`Cmd+R`)&lt;
+5.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a `recursive` framework search path under `[your project] > Build Settings > Search Paths > Framework Search Paths`
+6.  Add both frameworks under `[your project] > General > Embedded binaries`
+7.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
+8.  Run your project (`Cmd+R`)&lt;
 
 ### Android
 

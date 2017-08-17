@@ -38,12 +38,10 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A53E61B01F45CF2B0001EB4F /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6F99C1F20BBCA00FFEA72 /* libBleManager.a */; };
 		A53E61BA1F45D5330001EB4F /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6F9BE1F20BBCA00FFEA72 /* libRNFetchBlob.a */; };
-		A53E61BD1F45D6480001EB4F /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; };
-		A53E61BE1F45D6480001EB4F /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; };
-		A53E61BF1F45D6510001EB4F /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; };
-		A53E61C01F45D6510001EB4F /* iOSDFULibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A53E61C11F45D6510001EB4F /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; };
-		A53E61C21F45D6510001EB4F /* Zip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A53E61C81F45E7370001EB4F /* iOSDFULibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; };
+		A53E61C91F45E7370001EB4F /* iOSDFULibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BB1F45D6480001EB4F /* iOSDFULibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A53E61CA1F45E7370001EB4F /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; };
+		A53E61CB1F45E7370001EB4F /* Zip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A53E61BC1F45D6480001EB4F /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5D487F01F45CB2F00BDF5FE /* libRNNordicDfu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6F9C11F20BBCA00FFEA72 /* libRNNordicDfu.a */; };
 /* End PBXBuildFile section */
 
@@ -275,14 +273,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A53E61B91F45D2970001EB4F /* Embed Frameworks */ = {
+		A53E61CC1F45E7370001EB4F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A53E61C21F45D6510001EB4F /* Zip.framework in Embed Frameworks */,
-				A53E61C01F45D6510001EB4F /* iOSDFULibrary.framework in Embed Frameworks */,
+				A53E61CB1F45E7370001EB4F /* Zip.framework in Embed Frameworks */,
+				A53E61C91F45E7370001EB4F /* iOSDFULibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,18 +335,16 @@
 				A5D487F01F45CB2F00BDF5FE /* libRNNordicDfu.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
-				A53E61BD1F45D6480001EB4F /* iOSDFULibrary.framework in Frameworks */,
+				A53E61C81F45E7370001EB4F /* iOSDFULibrary.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				A53E61BF1F45D6510001EB4F /* iOSDFULibrary.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				A53E61C11F45D6510001EB4F /* Zip.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				A53E61BE1F45D6480001EB4F /* Zip.framework in Frameworks */,
+				A53E61CA1F45E7370001EB4F /* Zip.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				A53E61B01F45CF2B0001EB4F /* libBleManager.a in Frameworks */,
 				A53E61BA1F45D5330001EB4F /* libRNFetchBlob.a in Frameworks */,
@@ -614,7 +610,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				A53E61B91F45D2970001EB4F /* Embed Frameworks */,
+				A53E61CC1F45E7370001EB4F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1179,7 +1175,6 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1187,7 +1182,8 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
+					"$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1214,14 +1210,14 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X8M4Z7CAY5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
+					"$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
