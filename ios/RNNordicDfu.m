@@ -1,4 +1,5 @@
 #import "RNNordicDfu.h"
+#import <iOSDFULibrary/iOSDFULibrary-Swift.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @implementation RNNordicDfu
@@ -36,6 +37,8 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
   if (!centralManager) {
     reject(@"not_initialized", @"centralManager must be set before starting DFU", nil);
   } else {
+    NSURL * url = [[NSURL alloc] initWithString:@"abc"];
+    DFUFirmware * selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
     resolve(@[]);
   }
 }
