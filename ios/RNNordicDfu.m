@@ -49,8 +49,8 @@ didOccurWithMessage:(NSString * _Nonnull)message
 }
 
 RCT_EXPORT_METHOD(setCentralManager:(NSString *)address
-                           resolver:(RCTPromiseResolveBlock)resolve
-                           rejecter:(RCTPromiseRejectBlock)reject)
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
 {
   NSLog(@"setCentralManager: '%@'", address);
 
@@ -60,7 +60,7 @@ RCT_EXPORT_METHOD(setCentralManager:(NSString *)address
 }
 
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
-                deviceName:(NSString *)deviceName
+                  deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
@@ -71,18 +71,35 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
   if (!centralManager) {
     reject(@"not_initialized", @"centralManager must be set before starting DFU", nil);
   } else {
-    NSURL * url = [[NSURL alloc] initWithString:@"abc"];
-    DFUFirmware * selectedFirmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
-    CBPeripheral * selectedPeripheral = NULL;
-    DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager: centralManager target:selectedPeripheral];
-    [initiator withFirmware:selectedFirmware];
-    initiator.logger = self; // - to get log info
-    initiator.delegate = self; // - to be informed about current state and errors
-    initiator.progressDelegate = self; // - to show progress bar
+    NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
 
-    DFUServiceController *controller = [initiator start];
+    NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
 
-    resolve(@[]);
+    if ([peripherals count] != 1) {
+      reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
+    } else {
+      CBPeripheral * peripheral = [peripherals objectAtIndex:0];
+
+      NSURL * webUrl = [NSURL URLWithString:filePath];
+      NSData * urlData = [NSData dataWithContentsOfURL:webUrl];
+      NSURL * dataUrl = [NSURL URLWithDataRepresentation:urlData relativeToURL:NULL];
+
+      DFUFirmware * firmware = [DFUFirmware alloc];
+      [firmware initWithUrlToZipFile:dataUrl];
+
+      DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
+                                          initWithCentralManager:centralManager
+                                          target:peripheral]
+                                         withFirmware:firmware];
+
+      initiator.logger = self;
+      initiator.delegate = self;
+      initiator.progressDelegate = self;
+
+      DFUServiceController * controller = [initiator start];
+
+      resolve(@[]);
+    }
   }
 }
 

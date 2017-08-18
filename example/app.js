@@ -22,7 +22,6 @@ import BleManager from "react-native-ble-manager";
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 const DEVICE_ID = "FECC157C-3069-47F0-85F1-B9DBA61A8C88";
-
 const FB = RNFetchBlob.config({
   fileCache: true,
   appendExt: "zip"
@@ -69,15 +68,31 @@ export default class NordicDFUExample extends Component {
 
   // #### DFU #######################################################
 
-  startDFU() {
-    console.log("Starting DFU");
+  runDFU() {
     NordicDFU.startDFU({
       deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
-      filePath: "some-file-path"
+      filePath: "http://192.168.0.113:8080/11.zip"
     })
       .then(res => console.log("Transfer done: ", res))
       .catch(console.log);
+  }
+
+  startDFU() {
+    console.log("Starting DFU");
+
+    if (Platform.OS === "ios") {
+      BleManager.getCentralManagerAddress()
+        .then(address => {
+          return NordicDFU.setCentralManager({ address: address });
+        })
+        .then(() => {
+          return this.runDFU();
+        })
+        .catch(err => console.log(err));
+    } else {
+      return this.runDFU();
+    }
   }
 
   // #### BLUETOOTH #################################################
