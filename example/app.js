@@ -52,7 +52,7 @@ export default class NordicDFUExample extends Component {
       this.setState({ dfuState: state });
     });
 
-    FB.fetch("GET", "http://localhost:1234/app.zip").then(res => {
+    FB.fetch("GET", "http://192.168.1.3:8080/11.zip").then(res => {
       console.log("file saved to", res.path());
       this.setState({ imagefile: res.path() });
     });
@@ -72,7 +72,7 @@ export default class NordicDFUExample extends Component {
     NordicDFU.startDFU({
       deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
-      filePath: "http://192.168.0.113:8080/11.zip"
+      filePath: this.state.imagefile
     })
       .then(res => console.log("Transfer done: ", res))
       .catch(console.log);

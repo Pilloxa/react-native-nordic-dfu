@@ -84,12 +84,10 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
     } else {
       CBPeripheral * peripheral = [peripherals objectAtIndex:0];
 
-      NSURL * webUrl = [NSURL URLWithString:filePath];
-      NSData * urlData = [NSData dataWithContentsOfURL:webUrl];
-      NSURL * dataUrl = [NSURL URLWithDataRepresentation:urlData relativeToURL:NULL];
+      NSURL * url = [NSURL URLWithString:filePath];
 
       DFUFirmware * firmware = [DFUFirmware alloc];
-      [firmware initWithUrlToZipFile:dataUrl];
+      [firmware initWithUrlToZipFile:url];
 
       DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
                                           initWithCentralManager:centralManager
