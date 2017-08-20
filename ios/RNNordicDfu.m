@@ -68,7 +68,11 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
   NSLog(@"startDFU: '%@' deviceName: '%@' filePath: '%@'",
         deviceAddress, deviceName, filePath);
 
-  if (!centralManager) {
+  if (!deviceAddress) {
+    reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
+  } else if (!filePath) {
+    reject(@"nil_file_path", @"Attempted to start DFU with nil filePath", nil);
+  } else if (!centralManager) {
     reject(@"not_initialized", @"centralManager must be set before starting DFU", nil);
   } else {
     NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
