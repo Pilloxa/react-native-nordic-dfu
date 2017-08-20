@@ -14,9 +14,37 @@ RCT_EXPORT_MODULE();
            @"DFUStateChanged"];
 }
 
+- (NSString *)stateDescription:(enum DFUState)state
+{
+  switch (state)
+  {
+    case DFUStateAborted:
+      return @"DFU_ABORTED";
+    case DFUStateStarting:
+      return @"DFU_PROCESS_STARTING";
+    case DFUStateCompleted:
+      return @"DFU_COMPLETED";
+    case DFUStateUploading:
+      return @"DFU_STATE_UPLOADING";
+    case DFUStateConnecting:
+      return @"CONNECTING";
+    case DFUStateValidating:
+      return @"FIRMWARE_VALIDATING";
+    case DFUStateDisconnecting:
+      return @"DEVICE_DISCONNECTING";
+    case DFUStateEnablingDfuMode:
+      return @"ENABLING_DFU_MODE";
+  }
+
+  return @"UNKNOWN_STATE";
+}
+
 - (void)dfuStateDidChangeTo:(enum DFUState)state
 {
-  NSLog(@"dfuStateDidChangeTo: %lu", (long)state);
+  NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
+                             @"state": [self stateDescription:state],};
+
+  [self sendEventWithName:@"DFUStateChanged" body:evtBody];
 }
 
 - (void)   dfuError:(enum DFUError)error
@@ -31,16 +59,14 @@ didOccurWithMessage:(NSString * _Nonnull)message
      currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond
          avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond
 {
-  NSLog(@"dfuProgressDidChangeFor: %ld "
-        "outOf: %ld "
-        "to: %ld "
-        "currentSpeedBytesPerSecond: %f "
-        "avgSpeedBytedPerSecond: %f",
-        (long)part,
-        (long)totalParts,
-        (long)progress,
-        currentSpeedBytesPerSecond,
-        avgSpeedBytesPerSecond);
+  NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
+                             @"currentPart": [NSNumber numberWithInteger:part],
+                             @"partsTotal": [NSNumber numberWithInteger:totalParts],
+                             @"percent": [NSNumber numberWithInteger:progress],
+                             @"speed": [NSNumber numberWithDouble:currentSpeedBytesPerSecond],
+                             @"avgSpeed": [NSNumber numberWithDouble:avgSpeedBytesPerSecond],};
+
+  [self sendEventWithName:@"DFUProgress" body:evtBody];
 }
 
 - (void)logWith:(enum LogLevel)level message:(NSString * _Nonnull)message
@@ -52,8 +78,6 @@ RCT_EXPORT_METHOD(setCentralManager:(NSString *)address
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-  NSLog(@"setCentralManager: '%@'", address);
-
   sscanf([address cStringUsingEncoding:NSUTF8StringEncoding], "%p", &centralManager);
 
   resolve(@[]);
@@ -65,8 +89,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-  NSLog(@"startDFU: '%@' deviceName: '%@' filePath: '%@'",
-        deviceAddress, deviceName, filePath);
+  self.deviceAddress = deviceAddress;
 
   if (!deviceAddress) {
     reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
