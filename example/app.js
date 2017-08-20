@@ -47,12 +47,17 @@ export default class NordicDFUExample extends Component {
       console.log("DFU progress:", percent);
       this.setState({ progress: percent });
     });
+
     DFUEmitter.addListener("DFUStateChanged", ({ state }) => {
       console.log("DFU state:", state);
       this.setState({ dfuState: state });
     });
 
-    FB.fetch("GET", "http://localhost:1234/app.zip").then(res => {
+    DFUEmitter.addListener("DFUError", ({ error, message }) => {
+      console.log("DFU error: ", error, ", message: '", message, "'");
+    });
+
+    FB.fetch("GET", "http://192.168.1.3:8080/11.zip").then(res => {
       console.log("file saved to", res.path());
       this.setState({ imagefile: res.path() });
     });

@@ -8,10 +8,15 @@ RCT_EXPORT_MODULE();
 
 @synthesize centralManager;
 
+NSString * const DFUProgressEvent = @"DFUProgress";
+NSString * const DFUStateChangedEvent = @"DFUStateChanged";
+NSString * const DFUErrorEvent = @"DFUError";
+
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"DFUProgress",
-           @"DFUStateChanged"];
+  return @[DFUProgressEvent,
+           DFUStateChangedEvent,
+           DFUErrorEvent];
 }
 
 - (NSString *)stateDescription:(enum DFUState)state
@@ -34,9 +39,94 @@ RCT_EXPORT_MODULE();
       return @"DEVICE_DISCONNECTING";
     case DFUStateEnablingDfuMode:
       return @"ENABLING_DFU_MODE";
+    default:
+      return @"UNKNOWN_STATE";
   }
+}
 
-  return @"UNKNOWN_STATE";
+- (NSString *)errorDescription:(enum DFUError)error
+{
+  switch(error)
+  {
+    case DFUErrorCrcError:
+      return @"DFUErrorCrcError";
+    case DFUErrorBytesLost:
+      return @"DFUErrorBytesLost";
+    case DFUErrorFileInvalid:
+      return @"DFUErrorFileInvalid";
+    case DFUErrorFailedToConnect:
+      return @"DFUErrorFailedToConnect";
+    case DFUErrorFileNotSpecified:
+      return @"DFUErrorFileNotSpecified";
+    case DFUErrorBluetoothDisabled:
+      return @"DFUErrorBluetoothDisabled";
+    case DFUErrorDeviceDisconnected:
+      return @"DFUErrorDeviceDisconnected";
+    case DFUErrorDeviceNotSupported:
+      return @"DFUErrorDeviceNotSupported";
+    case DFUErrorInitPacketRequired:
+      return @"DFUErrorInitPacketRequired";
+    case DFUErrorUnsupportedResponse:
+      return @"DFUErrorUnsupportedResponse";
+    case DFUErrorReadingVersionFailed:
+      return @"DFUErrorReadingVersionFailed";
+    case DFUErrorRemoteLegacyDFUSuccess:
+      return @"DFUErrorRemoteLegacyDFUSuccess";
+    case DFUErrorRemoteSecureDFUSuccess:
+      return @"DFUErrorRemoteSecureDFUSuccess";
+    case DFUErrorServiceDiscoveryFailed:
+      return @"DFUErrorServiceDiscoveryFailed";
+    case DFUErrorRemoteLegacyDFUCrcError:
+      return @"DFUErrorRemoteLegacyDFUCrcError";
+    case DFUErrorEnablingControlPointFailed:
+      return @"DFUErrorEnablingControlPointFailed";
+    case DFUErrorExtendedInitPacketRequired:
+      return @"DFUErrorExtendedInitPacketRequired";
+    case DFUErrorReceivingNotificationFailed:
+      return @"DFUErrorReceivingNotificationFailed";
+    case DFUErrorRemoteBootlonlessDFUSuccess:
+      return @"DFUErrorRemoteBootlonlessDFUSuccess";
+    case DFUErrorRemoteLegacyDFUInvalidState:
+      return @"DFUErrorRemoteLegacyDFUInvalidState";
+    case DFUErrorRemoteLegacyDFUNotSupported:
+      return @"DFUErrorRemoteLegacyDFUNotSupported";
+    case DFUErrorWritingCharacteristicFailed:
+      return @"DFUErrorWritingCharacteristicFailed";
+    case DFUErrorRemoteSecureDFUExtendedError:
+      return @"DFUErrorRemoteSecureDFUExtendedError";
+    case DFUErrorRemoteSecureDFUInvalidObject:
+      return @"DFUErrorRemoteSecureDFUInvalidObject";
+    case DFUErrorRemoteLegacyDFUOperationFailed:
+      return @"DFUErrorRemoteLegacyDFUOperationFailed";
+    case DFUErrorRemoteSecureDFUOperationFailed:
+      return @"DFUErrorRemoteSecureDFUOperationFailed";
+    case DFUErrorRemoteSecureDFUUnsupportedType:
+      return @"DFUErrorRemoteSecureDFUUnsupportedType";
+    case DFUErrorRemoteLegacyDFUDataExceedsLimit:
+      return @"DFUErrorRemoteLegacyDFUDataExceedsLimit";
+    case DFUErrorRemoteSecureDFUInvalidParameter:
+      return @"DFUErrorRemoteSecureDFUInvalidParameter";
+    case DFUErrorRemoteSecureDFUSignatureMismatch:
+      return @"DFUErrorRemoteSecureDFUSignatureMismatch";
+    case DFUErrorRemoteSecureDFUOpCodeNotSupported:
+      return @"DFUErrorRemoteSecureDFUOpCodeNotSupported";
+    case DFUErrorRemoteBootlonlessDFUOperationFailed:
+      return @"DFUErrorRemoteBootlonlessDFUOperationFailed";
+    case DFUErrorRemoteSecureDFUInsufficientResources:
+      return @"DFUErrorRemoteSecureDFUInsufficientResources";
+    case DFUErrorRemoteSecureDFUOperationNotpermitted:
+      return @"DFUErrorRemoteSecureDFUOperationNotpermitted";
+    case DFUErrorRemoteBootlonlessDFUOpCodeNotSupported:
+      return @"DFUErrorRemoteBootlonlessDFUOpCodeNotSupported";
+    case DFUErrorRemoteExperimentalBootlonlessDFUSuccess:
+      return @"DFUErrorRemoteExperimentalBootlonlessDFUSuccess";
+    case DFUErrorRemoteExperimentalBootlonlessDFUOperationFailed:
+      return @"DFUErrorRemoteExperimentalBootlonlessDFUOperationFailed";
+    case DFUErrorRemoteExperimentalBootlonlessDFUOpCodeNotSupported:
+      return @"DFUErrorRemoteExperimentalBootlonlessDFUOpCodeNotSupported";
+    default:
+      return @"UNKNOWN_ERROR";
+  }
 }
 
 - (void)dfuStateDidChangeTo:(enum DFUState)state
@@ -44,13 +134,17 @@ RCT_EXPORT_MODULE();
   NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
                              @"state": [self stateDescription:state],};
 
-  [self sendEventWithName:@"DFUStateChanged" body:evtBody];
+  [self sendEventWithName:DFUStateChangedEvent body:evtBody];
 }
 
 - (void)   dfuError:(enum DFUError)error
 didOccurWithMessage:(NSString * _Nonnull)message
 {
-  NSLog(@"dfuError: %lu didOccurWithMessage: %@", error, message);
+  NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
+                             @"error": [self errorDescription:error],
+                             @"message": message,};
+
+  [self sendEventWithName:DFUErrorEvent body:evtBody];
 }
 
 - (void)dfuProgressDidChangeFor:(NSInteger)part
@@ -66,7 +160,7 @@ didOccurWithMessage:(NSString * _Nonnull)message
                              @"speed": [NSNumber numberWithDouble:currentSpeedBytesPerSecond],
                              @"avgSpeed": [NSNumber numberWithDouble:avgSpeedBytesPerSecond],};
 
-  [self sendEventWithName:@"DFUProgress" body:evtBody];
+  [self sendEventWithName:DFUProgressEvent body:evtBody];
 }
 
 - (void)logWith:(enum LogLevel)level message:(NSString * _Nonnull)message
@@ -109,8 +203,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
 
       NSURL * url = [NSURL URLWithString:filePath];
 
-      DFUFirmware * firmware = [DFUFirmware alloc];
-      [firmware initWithUrlToZipFile:url];
+      DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
 
       DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
                                           initWithCentralManager:centralManager
