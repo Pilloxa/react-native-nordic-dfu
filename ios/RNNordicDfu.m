@@ -1,12 +1,12 @@
 #import "RNNordicDfu.h"
-#import "iOSDFULibrary-Swift.h"
+#import <iOSDFULibrary/iOSDFULibrary-Swift.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+
+static CBCentralManager * (^getCentralManager)();
 
 @implementation RNNordicDfu
 
 RCT_EXPORT_MODULE();
-
-@synthesize centralManager;
 
 NSString * const DFUProgressEvent = @"DFUProgress";
 NSString * const DFUStateChangedEvent = @"DFUStateChanged";
@@ -168,15 +168,6 @@ didOccurWithMessage:(NSString * _Nonnull)message
   NSLog(@"logWith: %ld message: '%@'", (long)level, message);
 }
 
-RCT_EXPORT_METHOD(setCentralManager:(NSString *)address
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
-{
-  sscanf([address cStringUsingEncoding:NSUTF8StringEncoding], "%p", &centralManager);
-
-  resolve(@[]);
-}
-
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
@@ -185,40 +176,51 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
 {
   self.deviceAddress = deviceAddress;
 
-  if (!deviceAddress) {
-    reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
-  } else if (!filePath) {
-    reject(@"nil_file_path", @"Attempted to start DFU with nil filePath", nil);
-  } else if (!centralManager) {
-    reject(@"not_initialized", @"centralManager must be set before starting DFU", nil);
+  if (!getCentralManager) {
+    reject(@"nil_central_manager_getter", @"Attempted to start DFU without central manager getter", nil);
   } else {
-    NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
+    CBCentralManager * centralManager = getCentralManager();
 
-    NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
-
-    if ([peripherals count] != 1) {
-      reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
+    if (!centralManager) {
+      reject(@"nil_central_manager", @"Call to getCentralManager returned nil", nil);
+    } else if (!deviceAddress) {
+      reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
+    } else if (!filePath) {
+      reject(@"nil_file_path", @"Attempted to start DFU with nil filePath", nil);
     } else {
-      CBPeripheral * peripheral = [peripherals objectAtIndex:0];
+      NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
 
-      NSURL * url = [NSURL URLWithString:filePath];
+      NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
 
-      DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
+      if ([peripherals count] != 1) {
+        reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
+      } else {
+        CBPeripheral * peripheral = [peripherals objectAtIndex:0];
 
-      DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
-                                          initWithCentralManager:centralManager
-                                          target:peripheral]
-                                         withFirmware:firmware];
+        NSURL * url = [NSURL URLWithString:filePath];
 
-      initiator.logger = self;
-      initiator.delegate = self;
-      initiator.progressDelegate = self;
+        DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
 
-      DFUServiceController * controller = [initiator start];
+        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
+                                            initWithCentralManager:centralManager
+                                            target:peripheral]
+                                           withFirmware:firmware];
 
-      resolve(@[]);
+        initiator.logger = self;
+        initiator.delegate = self;
+        initiator.progressDelegate = self;
+
+        DFUServiceController * controller = [initiator start];
+
+        resolve(@[]);
+      }
     }
   }
+}
+
++ (void)setCentralManagerGetter:(CBCentralManager * (^)())getter
+{
+  getCentralManager = getter;
 }
 
 @end

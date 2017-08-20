@@ -73,7 +73,7 @@ export default class NordicDFUExample extends Component {
 
   // #### DFU #######################################################
 
-  runDFU() {
+  startDFU() {
     NordicDFU.startDFU({
       deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
@@ -81,23 +81,6 @@ export default class NordicDFUExample extends Component {
     })
       .then(res => console.log("Transfer done: ", res))
       .catch(console.log);
-  }
-
-  startDFU() {
-    console.log("Starting DFU");
-
-    if (Platform.OS === "ios") {
-      BleManager.getCentralManagerAddress()
-        .then(address => {
-          return NordicDFU.setCentralManager({ address: address });
-        })
-        .then(() => {
-          return this.runDFU();
-        })
-        .catch(err => console.log(err));
-    } else {
-      return this.runDFU();
-    }
   }
 
   // #### BLUETOOTH #################################################
