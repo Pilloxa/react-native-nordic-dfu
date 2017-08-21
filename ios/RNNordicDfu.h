@@ -5,6 +5,8 @@
 
 @interface RNNordicDfu : RCTEventEmitter<RCTBridgeModule, DFUServiceDelegate, DFUProgressDelegate, LoggerDelegate>
 
+@property (strong, nonatomic) NSString * deviceAddress;
+
 + (void)setCentralManagerGetter:(CBCentralManager * (^)())getter;
 
 @end
