@@ -48,14 +48,9 @@ export default class NordicDFUExample extends Component {
       console.log("DFU progress:", percent);
       this.setState({ progress: percent });
     });
-
     DFUEmitter.addListener("DFUStateChanged", ({ state }) => {
       console.log("DFU state:", state);
       this.setState({ dfuState: state });
-    });
-
-    DFUEmitter.addListener("DFUError", ({ error, message }) => {
-      console.log("DFU error: ", error, ", message: '", message, "'");
     });
 
     FB.fetch("GET", "http://localhost:1234/app.zip").then(res => {
@@ -75,6 +70,7 @@ export default class NordicDFUExample extends Component {
   // #### DFU #######################################################
 
   startDFU() {
+    console.log("Starting DFU");
     NordicDFU.startDFU({
       deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
