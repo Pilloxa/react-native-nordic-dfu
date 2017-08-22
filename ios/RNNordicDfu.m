@@ -10,13 +10,11 @@ RCT_EXPORT_MODULE();
 
 NSString * const DFUProgressEvent = @"DFUProgress";
 NSString * const DFUStateChangedEvent = @"DFUStateChanged";
-NSString * const DFUErrorEvent = @"DFUError";
 
 - (NSArray<NSString *> *)supportedEvents
 {
   return @[DFUProgressEvent,
-           DFUStateChangedEvent,
-           DFUErrorEvent];
+           DFUStateChangedEvent,];
 }
 
 - (NSString *)stateDescription:(enum DFUState)state
@@ -135,16 +133,23 @@ NSString * const DFUErrorEvent = @"DFUError";
                              @"state": [self stateDescription:state],};
 
   [self sendEventWithName:DFUStateChangedEvent body:evtBody];
+
+  if (state == DFUStateCompleted) {
+    NSDictionary * resolveBody = @{@"deviceAddress": self.deviceAddress,};
+
+    self.resolve(resolveBody);
+  }
 }
 
 - (void)   dfuError:(enum DFUError)error
 didOccurWithMessage:(NSString * _Nonnull)message
 {
   NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
-                             @"error": [self errorDescription:error],
-                             @"message": message,};
+                             @"state": @"DFU_FAILED",};
 
-  [self sendEventWithName:DFUErrorEvent body:evtBody];
+  [self sendEventWithName:DFUStateChangedEvent body:evtBody];
+
+  self.reject([self errorDescription:error], message, nil);
 }
 
 - (void)dfuProgressDidChangeFor:(NSInteger)part
@@ -175,6 +180,8 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
   self.deviceAddress = deviceAddress;
+  self.resolve = resolve;
+  self.reject = reject;
 
   if (!getCentralManager) {
     reject(@"nil_central_manager_getter", @"Attempted to start DFU without central manager getter", nil);
@@ -211,8 +218,6 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         initiator.progressDelegate = self;
 
         DFUServiceController * controller = [initiator start];
-
-        resolve(@[]);
       }
     }
   }
