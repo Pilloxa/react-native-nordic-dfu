@@ -36,7 +36,6 @@ function rejectPromise(message) {
  *   .catch(console.log);
  */
 function startDFU({ deviceAddress, deviceName = null, filePath }) {
-  console.log("startDFU");
   if (deviceAddress == undefined) {
     return rejectPromise("No deviceAddress defined");
   }
