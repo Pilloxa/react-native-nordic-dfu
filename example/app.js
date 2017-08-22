@@ -21,7 +21,8 @@ import BleManager from "react-native-ble-manager";
 
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
-const DEVICE_ID = "FECC157C-3069-47F0-85F1-B9DBA61A8C88";
+const DEVICE_ID = "C3:53:A0:31:2F:14";
+
 const FB = RNFetchBlob.config({
   fileCache: true,
   appendExt: "zip"
@@ -57,7 +58,7 @@ export default class NordicDFUExample extends Component {
       console.log("DFU error: ", error, ", message: '", message, "'");
     });
 
-    FB.fetch("GET", "http://192.168.1.3:8080/11.zip").then(res => {
+    FB.fetch("GET", "http://localhost:1234/app.zip").then(res => {
       console.log("file saved to", res.path());
       this.setState({ imagefile: res.path() });
     });
