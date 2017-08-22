@@ -85,7 +85,8 @@ See: [example/index.js](example/index.android.js)
 5.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a `recursive` framework search path under `[your project] > Build Settings > Search Paths > Framework Search Paths`
 6.  Add both frameworks under `[your project] > General > Embedded binaries`
 7.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
-8.  Run your project (`Cmd+R`)&lt;
+8.  Call `[RNNordicDfu setCentralManagerGetter:<...>]` with a block argument that returns your `CBCentralManager` instance (see example project for how this may be done). It is assumed that you have initiated this instance outside of this library, for flexibility.
+9.  Run your project (`Cmd+R`)&lt;
 
 ### Android
 
