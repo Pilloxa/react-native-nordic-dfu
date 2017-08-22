@@ -8,8 +8,7 @@
   "scripts": {
     "test": "echo \"No test specified\"",
     "precommit": "lint-staged",
-    "document": "documentation readme --readme-file README.md -s \"API\" -g",
-    "install": "napa NordicSemiconductor/IOS-Pods-DFU-Library#df41dfd:iOSDFULibrary"
+    "document": "documentation readme --readme-file README.md -s \"API\" -g"
   },
   "keywords": [
     "react-native",
@@ -25,8 +24,7 @@
     "documentation": "^4.0.0-rc.1",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
-    "prettier": "^1.2.2",
-    "napa": "^3.0.0"
+    "prettier": "^1.2.2"
   },
   "lint-staged": {
     "*.js": [
