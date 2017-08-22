@@ -31,7 +31,7 @@ done in React Native.
 
 **Parameters**
 
--   `obj` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
+-   `obj` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `obj.deviceAddress` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The MAC address for the device that should be updated
     -   `obj.deviceName` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The name of the device in the update notification (optional, default `null`)
     -   `obj.filePath` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The file system path to the zip-file used for updating
@@ -107,11 +107,11 @@ See: [example/index.js](example/index.android.js)
 
 This package contains pre-built frameworks for Nordic's native DFU library. To upgrade to the latest version of this library:
 
-1. Update library version in `ios/Cartfile`
-2. Navigate to `ios/`
-3. Execute `carthage update --platform iOS`
-4. Copy the files `Zip.framework` and `iOSDFULibrary.framework` to `ios/`
-5. Rebuild demo project
+1.  Update library version in `ios/Cartfile`
+2.  Navigate to `ios/`
+3.  Execute `carthage update --platform iOS`
+4.  Copy the files `Zip.framework` and `iOSDFULibrary.framework` to `ios/`
+5.  Rebuild demo project
 
 ## Resources
 

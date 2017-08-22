@@ -1,6 +1,6 @@
 import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 const { RNNordicDfu } = NativeModules;
-const NordicDFU = { startDFU, setCentralManager };
+const NordicDFU = { startDFU };
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
@@ -45,14 +45,6 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
   return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
-}
-
-function setCentralManager({ address }) {
-  if (Platform.OS !== "ios") {
-    return rejectPromise("setCentralManager is an ios only function");
-  }
-
-  return RNNordicDfu.setCentralManager(address);
 }
 
 /**
