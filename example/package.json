@@ -9,7 +9,7 @@
 	"dependencies": {
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.45.1",
-		"react-native-ble-manager": "^5.1.1",
+		"react-native-ble-manager": "git://github.com/Looveh/react-native-ble-manager/#expose-ios-central-manager",
 		"react-native-fetch-blob": "^0.10.6",
 		"react-native-nordic-dfu": "file:../"
 	},

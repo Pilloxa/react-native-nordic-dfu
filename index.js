@@ -1,13 +1,6 @@
 import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 const { RNNordicDfu } = NativeModules;
-const NordicDFU = {
-  startDFU: Platform.select({
-    android: startDFU,
-    ios: () => {
-      console.warn("iOS not yet supported");
-    }
-  })
-};
+const NordicDFU = { startDFU };
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
@@ -16,24 +9,24 @@ function rejectPromise(message) {
 }
 
 /**
- * 
+ *
  * Starts the DFU process
  *
- * Observe: The peripheral must have been discovered by the native BLE side so that the 
+ * Observe: The peripheral must have been discovered by the native BLE side so that the
  * bluetooth stack knows about it. This library will not do a scan but only
  * the actual connect and then the transfer. See the example project to see how it can be
  * done in React Native.
- * 
- * 
+ *
+ *
  * @param {Object} obj
  * @param {string} obj.deviceAddress The MAC address for the device that should be updated
  * @param {string} [obj.deviceName = null] The name of the device in the update notification
  * @param {string} obj.filePath The file system path to the zip-file used for updating
  * @returns {Promise} A promise that resolves or rejects with the `deviceAddress` in the return value
- * 
+ *
  * @example
  * import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
- * 
+ *
  * NordicDFU.startDFU({
  *   deviceAddress: "C3:53:C0:39:2F:99",
  *   name: "Pilloxa Pillbox",
@@ -55,27 +48,20 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
 
 /**
  * Event emitter for DFU state and progress events
- * 
+ *
  * @const DFUEmitter
- * 
+ *
  * @example
  * import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
- * 
+ *
  * DFUEmitter.addlistener("DFUProgress",({percent, currentPart, partsTotal, avgSpeed, speed}) => {
  *   console.log("DFU progress: " + percent +"%");
  * });
- * 
+ *
  * DFUEmitter.addListener("DFUStateChanged", ({state}) => {
  *   console.log("DFU State:", state);
  * })
  */
-const DFUEmitter =
-  Platform.OS == "ios"
-    ? {
-        addListener: () => {
-          console.warn("iOS not yet supported");
-        }
-      }
-    : new NativeEventEmitter(RNNordicDfu);
+const DFUEmitter = new NativeEventEmitter(RNNordicDfu);
 
 export { NordicDFU, DFUEmitter };
