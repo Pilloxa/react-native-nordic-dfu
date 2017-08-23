@@ -1,10 +1,7 @@
-# react-native-nordic-dfu [![CircleCI](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu.svg?style=svg)](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu) [![Known Vulnerabilities](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu/badge.svg)](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu)
+# react-native-nordic-dfu [![npm version](https://badge.fury.io/js/react-native-nordic-dfu.svg)](https://badge.fury.io/js/react-native-nordic-dfu)[![CircleCI](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu.svg?style=svg)](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu) [![Known Vulnerabilities](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu/badge.svg)](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu)
 
 This library allows you to do a Device Firmware Update (DFU) of your nrf51 or
-nrf52 chip from Nordic Semiconductor. It currently only works for Android but
-the iOS functionality is on the way.
-
-WARNING: The API might change when the iOS functionality is added.
+nrf52 chip from Nordic Semiconductor. It works for both iOS and Android.
 
 For more info about the DFU process, see: [Resources](#resources)
 
@@ -120,3 +117,7 @@ This package contains pre-built frameworks for Nordic's native DFU library. To u
 -   [How to create init packet](https://github.com/NordicSemiconductor/Android-nRF-Connect/tree/master/init%20packet%20handling "Init packet handling")
 -   [nRF51 Development Kit (DK)](http://www.nordicsemi.com/eng/Products/nRF51-DK "nRF51 DK") (compatible with Arduino Uno Revision 3)
 -   [nRF52 Development Kit (DK)](http://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52-DK "nRF52 DK") (compatible with Arduino Uno Revision 3)
+
+## Sponsored by
+
+[![pilloxa](https://pilloxa.com/images/pilloxa-round-logo.svg)](https://pilloxa.com)
