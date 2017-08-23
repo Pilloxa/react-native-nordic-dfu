@@ -11,6 +11,8 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNNordicDfu.h"
+#import "BleManager.h"
 
 @implementation AppDelegate
 
@@ -31,6 +33,11 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  [RNNordicDfu setCentralManagerGetter:^() {
+    return [BleManager getCentralManager];
+  }];
+
   return YES;
 }
 

@@ -1,11 +1,14 @@
-
-#if __has_include("RCTBridgeModule.h")
-#import "RCTBridgeModule.h"
-#else
+#import <CoreBluetooth/CoreBluetooth.h>
 #import <React/RCTBridgeModule.h>
-#endif
+#import <React/RCTEventEmitter.h>
+#import <iOSDFULibrary/iOSDFULibrary-Swift.h>
 
-@interface RNNordicDfu : NSObject <RCTBridgeModule>
+@interface RNNordicDfu : RCTEventEmitter<RCTBridgeModule, DFUServiceDelegate, DFUProgressDelegate, LoggerDelegate>
+
+@property (strong, nonatomic) NSString * deviceAddress;
+@property (strong, nonatomic) RCTPromiseResolveBlock resolve;
+@property (strong, nonatomic) RCTPromiseRejectBlock reject;
+
++ (void)setCentralManagerGetter:(CBCentralManager * (^)())getter;
 
 @end
-  

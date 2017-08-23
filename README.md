@@ -1,7 +1,7 @@
 # react-native-nordic-dfu [![CircleCI](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu.svg?style=svg)](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu) [![Known Vulnerabilities](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu/badge.svg)](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu)
 
-This library allows you to do a Device Firmware Update (DFU) of your nrf51 or 
-nrf52 chip from Nordic Semiconductor. It currently only works for Android but 
+This library allows you to do a Device Firmware Update (DFU) of your nrf51 or
+nrf52 chip from Nordic Semiconductor. It currently only works for Android but
 the iOS functionality is on the way.
 
 WARNING: The API might change when the iOS functionality is added.
@@ -24,7 +24,7 @@ For more info about the DFU process, see: [Resources](#resources)
 
 Starts the DFU process
 
-Observe: The peripheral must have been discovered by the native BLE side so that the 
+Observe: The peripheral must have been discovered by the native BLE side so that the
 bluetooth stack knows about it. This library will not do a scan but only
 the actual connect and then the transfer. See the example project to see how it can be
 done in React Native.
@@ -81,7 +81,12 @@ See: [example/index.js](example/index.android.js)
 1.  In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2.  Go to `node_modules` ➜ `react-native-nordic-dfu` and add `RNNordicDfu.xcodeproj`
 3.  In XCode, in the project navigator, select your project. Add `libRNNordicDfu.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4.  Run your project (`Cmd+R`)&lt;
+4.  Drag and drop `Zip.framework` and `iOSDFULibrary.framework` into your project
+5.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a `recursive` framework search path under `[your project] > Build Settings > Search Paths > Framework Search Paths`
+6.  Add both frameworks under `[your project] > General > Embedded binaries`
+7.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
+8.  Call `[RNNordicDfu setCentralManagerGetter:<...>]` with a block argument that returns your `CBCentralManager` instance (see example project for how this may be done). It is assumed that you have initiated this instance outside of this library, for flexibility.
+9.  Run your project (`Cmd+R`)&lt;
 
 ### Android
 
@@ -95,6 +100,18 @@ See: [example/index.js](example/index.android.js)
         project(':react-native-nordic-dfu').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-nordic-dfu/android')
 3.  Insert the following lines inside the dependencies block in `android/app/build.gradle`:
           compile project(':react-native-nordic-dfu')
+
+## Development and contribution
+
+### iOS
+
+This package contains pre-built frameworks for Nordic's native DFU library. To upgrade to the latest version of this library:
+
+1.  Update library version in `ios/Cartfile`
+2.  Navigate to `ios/`
+3.  Execute `carthage update --platform iOS`
+4.  Copy the files `Zip.framework` and `iOSDFULibrary.framework` to `ios/`
+5.  Rebuild demo project
 
 ## Resources
 
