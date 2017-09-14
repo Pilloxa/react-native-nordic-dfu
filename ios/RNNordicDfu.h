@@ -10,5 +10,7 @@
 @property (strong, nonatomic) RCTPromiseRejectBlock reject;
 
 + (void)setCentralManagerGetter:(CBCentralManager * (^)())getter;
++ (void)setOnDFUComplete:(void (^)())onComplete;
++ (void)setOnDFUError:(void (^)())onError;
 
 @end
