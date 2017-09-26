@@ -7,4 +7,5 @@ framework module iOSDFULibrary {
 
 module iOSDFULibrary.Swift {
     header "iOSDFULibrary-Swift.h"
+    requires objc
 }

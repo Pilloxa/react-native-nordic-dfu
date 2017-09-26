@@ -7,4 +7,5 @@ framework module Zip {
 
 module Zip.Swift {
     header "Zip-Swift.h"
+    requires objc
 }
