@@ -1,1 +1,1 @@
-github "NordicSemiconductor/IOS-Pods-DFU-Library" ~> 3.1
+github "NordicSemiconductor/IOS-Pods-DFU-Library" == 4.0.2

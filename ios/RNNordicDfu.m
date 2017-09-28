@@ -84,8 +84,8 @@ NSString * const DFUStateChangedEvent = @"DFUStateChanged";
       return @"DFUErrorExtendedInitPacketRequired";
     case DFUErrorReceivingNotificationFailed:
       return @"DFUErrorReceivingNotificationFailed";
-    case DFUErrorRemoteBootlonlessDFUSuccess:
-      return @"DFUErrorRemoteBootlonlessDFUSuccess";
+    case DFUErrorRemoteButtonlessDFUSuccess:
+      return @"DFUErrorRemoteButtonlessDFUSuccess";
     case DFUErrorRemoteLegacyDFUInvalidState:
       return @"DFUErrorRemoteLegacyDFUInvalidState";
     case DFUErrorRemoteLegacyDFUNotSupported:
@@ -110,20 +110,20 @@ NSString * const DFUStateChangedEvent = @"DFUStateChanged";
       return @"DFUErrorRemoteSecureDFUSignatureMismatch";
     case DFUErrorRemoteSecureDFUOpCodeNotSupported:
       return @"DFUErrorRemoteSecureDFUOpCodeNotSupported";
-    case DFUErrorRemoteBootlonlessDFUOperationFailed:
-      return @"DFUErrorRemoteBootlonlessDFUOperationFailed";
+    case DFUErrorRemoteButtonlessDFUOperationFailed:
+      return @"DFUErrorRemoteButtonlessDFUOperationFailed";
     case DFUErrorRemoteSecureDFUInsufficientResources:
       return @"DFUErrorRemoteSecureDFUInsufficientResources";
     case DFUErrorRemoteSecureDFUOperationNotpermitted:
       return @"DFUErrorRemoteSecureDFUOperationNotpermitted";
-    case DFUErrorRemoteBootlonlessDFUOpCodeNotSupported:
-      return @"DFUErrorRemoteBootlonlessDFUOpCodeNotSupported";
-    case DFUErrorRemoteExperimentalBootlonlessDFUSuccess:
-      return @"DFUErrorRemoteExperimentalBootlonlessDFUSuccess";
-    case DFUErrorRemoteExperimentalBootlonlessDFUOperationFailed:
-      return @"DFUErrorRemoteExperimentalBootlonlessDFUOperationFailed";
-    case DFUErrorRemoteExperimentalBootlonlessDFUOpCodeNotSupported:
-      return @"DFUErrorRemoteExperimentalBootlonlessDFUOpCodeNotSupported";
+    case DFUErrorRemoteButtonlessDFUOpCodeNotSupported:
+      return @"DFUErrorRemoteButtonlessDFUOpCodeNotSupported";
+    case DFUErrorRemoteExperimentalButtonlessDFUSuccess:
+      return @"DFUErrorRemoteExperimentalButtonlessDFUSuccess";
+    case DFUErrorRemoteExperimentalButtonlessDFUOperationFailed:
+      return @"DFUErrorRemoteExperimentalButtonlessDFUOperationFailed";
+    case DFUErrorRemoteExperimentalButtonlessDFUOpCodeNotSupported:
+      return @"DFUErrorRemoteExperimentalButtonlessDFUOpCodeNotSupported";
     default:
       return @"UNKNOWN_ERROR";
   }
