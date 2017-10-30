@@ -22,6 +22,7 @@ function rejectPromise(message) {
  * @param {string} obj.deviceAddress The MAC address for the device that should be updated
  * @param {string} [obj.deviceName = null] The name of the device in the update notification
  * @param {string} obj.filePath The file system path to the zip-file used for updating
+ * @param {string} obj.firmwareType The type of firmware to update. Must be one of (`softdevice`, `bootloader`, `application`, `softdeviceBootloader`, `softdeviceBootloaderApplication`). If no value is supplied it defaults to `softdeviceBootloaderApplication`
  * @returns {Promise} A promise that resolves or rejects with the `deviceAddress` in the return value
  *
  * @example
@@ -35,7 +36,12 @@ function rejectPromise(message) {
  *   .then(res => console.log("Transfer done:", res))
  *   .catch(console.log);
  */
-function startDFU({ deviceAddress, deviceName = null, filePath }) {
+function startDFU({
+  deviceAddress,
+  deviceName = null,
+  filePath,
+  firmwareType
+}) {
   if (deviceAddress == undefined) {
     return rejectPromise("No deviceAddress defined");
   }
@@ -43,7 +49,12 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
     return rejectPromise("No filePath defined");
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
-  return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
+  return RNNordicDfu.startDFU(
+    upperDeviceAddress,
+    deviceName,
+    filePath,
+    firmwareType
+  );
 }
 
 /**

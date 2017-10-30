@@ -129,6 +129,23 @@ NSString * const DFUStateChangedEvent = @"DFUStateChanged";
   }
 }
 
+- (DFUFirmwareType)firmwareTypeFromString:(NSString *)firmwareType
+{
+  if ([firmwareType isEqualToString:@"softdevice"]) {
+    return DFUFirmwareTypeSoftdevice;
+  } else if ([firmwareType isEqualToString:@"bootloader"]) {
+    return DFUFirmwareTypeBootloader;
+  } else if ([firmwareType isEqualToString:@"application"]) {
+    return DFUFirmwareTypeApplication;
+  } else if ([firmwareType isEqualToString:@"softdeviceBootloader"]) {
+    return DFUFirmwareTypeSoftdeviceBootloader;
+  } else if ([firmwareType isEqualToString:@"softdeviceBootloaderApplication"]) {
+    return DFUFirmwareTypeSoftdeviceBootloaderApplication;
+  }
+
+  return 0;
+}
+
 - (void)dfuStateDidChangeTo:(enum DFUState)state
 {
   NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
@@ -185,6 +202,7 @@ didOccurWithMessage:(NSString * _Nonnull)message
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
+                  firmwareType:(NSString *)firmwareTypeStr
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -197,12 +215,22 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
   } else {
     CBCentralManager * centralManager = getCentralManager();
 
+    DFUFirmwareType firmwareType = 0;
+
+    if (!firmwareTypeStr) {
+      firmwareType = DFUFirmwareTypeSoftdeviceBootloaderApplication;
+    } else {
+      firmwareType = [self firmwareTypeFromString:firmwareTypeStr];
+    }
+
     if (!centralManager) {
       reject(@"nil_central_manager", @"Call to getCentralManager returned nil", nil);
     } else if (!deviceAddress) {
       reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
     } else if (!filePath) {
       reject(@"nil_file_path", @"Attempted to start DFU with nil filePath", nil);
+    } else if (!firmwareType) {
+      reject(@"unknown_firmware_type", @"Attempted to start DFU with unknown firmwareType", nil);
     } else {
       NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
 
@@ -215,7 +243,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
 
         NSURL * url = [NSURL URLWithString:filePath];
 
-        DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
+        DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url type:firmwareType];
 
         DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
                                             initWithCentralManager:centralManager
