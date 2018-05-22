@@ -16,7 +16,6 @@ public class RNNordicDfuPackage implements ReactPackage {
       return Arrays.<NativeModule>asList(new RNNordicDfuModule(reactContext));
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
       return Collections.emptyList();
     }
