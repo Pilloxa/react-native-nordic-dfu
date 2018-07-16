@@ -34,6 +34,6 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'no.nordicsemi.android:dfu:1.3.0'
+    compile 'no.nordicsemi.android:dfu:1.7.0'
 }
   
