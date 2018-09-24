@@ -82,11 +82,12 @@ See: [example/index.js](example/index.android.js)
 3.  In XCode, in the project navigator, select your project. Add `libRNNordicDfu.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4.  Drag and drop `Zip.framework` and `iOSDFULibrary.framework` into your project
 5.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a `recursive` framework search path under `[your project] > Build Settings > Search Paths > Framework Search Paths`
-6.  Add both frameworks under `[your project] > General > Embedded binaries`
-7.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
-8.  Call `[RNNordicDfu setCentralManagerGetter:<...>]` with a block argument that returns your `CBCentralManager` instance (see example project for how this may be done). It is assumed that you have initiated this instance outside of this library, for flexibility.
-9.  If you want control over the `CBCentralManager` instance after the DFU process is done you might need to provide the `onDFUComplete` and `onDFUError` callbacks to transfer back delegate control (see example project).
-10. Run your project (`Cmd+R`)&lt;
+6.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a header search path under `[your project] > Build Settings > Search Paths > Header Search Paths`
+7.  Add both frameworks under `[your project] > General > Embedded binaries`
+8.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
+9.  Call `[RNNordicDfu setCentralManagerGetter:<...>]` with a block argument that returns your `CBCentralManager` instance (see example project for how this may be done). It is assumed that you have initiated this instance outside of this library, for flexibility.
+10.  If you want control over the `CBCentralManager` instance after the DFU process is done you might need to provide the `onDFUComplete` and `onDFUError` callbacks to transfer back delegate control (see example project).
+11. Run your project (`Cmd+R`)&lt;
 
 ### Android
 
