@@ -203,6 +203,7 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 					"$(PROJECT_DIR)/iOSDFULibrary.framework/**",
+					"$(PROJECT_DIR)/../../../ios/Pods/Headers/Public",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -221,6 +222,7 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 					"$(PROJECT_DIR)/iOSDFULibrary.framework/**",
+					"$(PROJECT_DIR)/../../../ios/Pods/Headers/Public",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
