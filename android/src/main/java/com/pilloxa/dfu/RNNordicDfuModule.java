@@ -3,6 +3,7 @@ package com.pilloxa.dfu;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -23,6 +24,9 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         super(reactContext);
         reactContext.addLifecycleEventListener(this);
         this.reactContext = reactContext;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DfuServiceInitiator.createDfuNotificationChannel(reactContext);
+        }
     }
 
     @ReactMethod

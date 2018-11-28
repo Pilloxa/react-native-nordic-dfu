@@ -18,7 +18,7 @@
   "author": "Viktor Eriksson <viktor.eriksson2@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2"
+    "react-native": ">= 0.41.2"
   },
   "devDependencies": {
     "documentation": "^4.0.0-rc.1",
