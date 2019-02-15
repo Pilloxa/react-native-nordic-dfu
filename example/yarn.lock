@@ -3009,8 +3009,8 @@ react-native-fetch-blob@^0.10.6:
     base-64 "0.1.0"
     glob "^7.0.6"
 
-"react-native-nordic-dfu@file:../":
-  version "1.1.0"
+"react-native-nordic-dfu@file:..":
+  version "1.2.1"
 
 react-native@0.45.1:
   version "0.45.1"
