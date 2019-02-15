@@ -29,7 +29,7 @@ function rejectPromise(message) {
  *
  * NordicDFU.startDFU({
  *   deviceAddress: "C3:53:C0:39:2F:99",
- *   name: "Pilloxa Pillbox",
+ *   deviceName: "Pilloxa Pillbox",
  *   filePath: "/data/user/0/com.nordicdfuexample/files/RNFetchBlobTmp4of.zip"
  * })
  *   .then(res => console.log("Transfer done:", res))
