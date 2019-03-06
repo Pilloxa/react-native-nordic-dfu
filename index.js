@@ -1,10 +1,16 @@
 import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 const { RNNordicDfu } = NativeModules;
-const NordicDFU = { startDFU };
+const NordicDFU = { startDFU, switchToDFU};
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
     reject(new Error("NordicDFU.startDFU: " + message));
+  });
+}
+
+function resolvePromise(message) {
+  return new Promise((resolve, reject) => {
+    resolve()
   });
 }
 
@@ -44,6 +50,18 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
   return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
+}
+
+function switchToDFU({ deviceAddress, deviceName = null, filePath }) {
+  if (deviceAddress == undefined) {
+    return rejectPromise("No deviceAddress defined");
+  }
+  if (filePath == undefined) {
+    return rejectPromise("No filePath defined");
+  }
+  const upperDeviceAddress = deviceAddress.toUpperCase();
+   RNNordicDfu.switchToDFU(upperDeviceAddress, deviceName, filePath);
+   return resolvePromise()
 }
 
 /**

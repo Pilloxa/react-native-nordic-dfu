@@ -232,6 +232,63 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
   }
 }
 
+RCT_EXPORT_METHOD(switchToDFU:(NSString *)deviceAddress
+                  deviceName:(NSString *)deviceName
+                  filePath:(NSString *)filePath
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    self.deviceAddress = deviceAddress;
+
+    
+    if (!getCentralManager) {
+        reject(@"nil_central_manager_getter", @"Attempted to start DFU without central manager getter", nil);
+    } else {
+        CBCentralManager * centralManager = getCentralManager();
+        
+        if (!centralManager) {
+            reject(@"nil_central_manager", @"Call to getCentralManager returned nil", nil);
+        } else if (!deviceAddress) {
+            reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
+        } else if (!filePath) {
+            reject(@"nil_file_path", @"Attempted to start DFU with nil filePath", nil);
+        } else {
+            NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
+            
+            NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
+            
+            if ([peripherals count] != 1) {
+                reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
+            } else {
+                CBPeripheral * peripheral = [peripherals objectAtIndex:0];
+                
+                NSURL * url = [NSURL URLWithString:filePath];
+                
+                DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
+                
+                DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
+                                                    initWithCentralManager:centralManager
+                                                    target:peripheral]
+                                                   withFirmware:firmware];
+                
+                DFUServiceController * controller = [initiator start];
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    //Here your non-main thread.
+                    [NSThread sleepForTimeInterval:5.0f];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //Here you returns to main thread.
+                        [controller abort];
+                        resolve(NULL);
+                    });
+                });
+                
+                
+            }
+        }
+    }
+}
+
 + (void)setCentralManagerGetter:(CBCentralManager * (^)())getter
 {
   getCentralManager = getter;
