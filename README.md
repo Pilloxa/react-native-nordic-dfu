@@ -34,7 +34,7 @@ done in React Native.
     -   `obj.deviceAddress` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The `identifier`\* of the device that should be updated
     -   `obj.deviceName` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The name of the device in the update notification (optional, default `null`)
     -   `obj.filePath` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The file system path to the zip-file used for updating
-    
+
 \* `identifier` — MAC address (Android) / UUID (iOS)
 
 **Examples**
@@ -77,7 +77,12 @@ See: [example/index.js](example/index.android.js)
 
 ## Manual installation
 
-### iOS
+### iOS with Podspec
+
+1. Run `react-native link react-native-nordic-dfu`
+2. Use step 9. and 10. of next guide if need be
+
+### iOS Manual Linking
 
 1.  In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2.  Go to `node_modules` ➜ `react-native-nordic-dfu` and add `RNNordicDfu.xcodeproj`
