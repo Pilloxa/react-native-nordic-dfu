@@ -1,6 +1,6 @@
 #import "RNNordicDfu.h"
-#import <iOSDFULibrary/iOSDFULibrary-Swift.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+@import iOSDFULibrary;
 
 static CBCentralManager * (^getCentralManager)();
 static void (^onDFUComplete)();
