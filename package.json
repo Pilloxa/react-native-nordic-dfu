@@ -15,7 +15,7 @@
     "dfu",
     "nordic"
   ],
-  "author": "Viktor Eriksson <viktor.eriksson2@gmail.com>",
+  "author": "Pilloxa <recruitment@pilloxa.com>",
   "license": "MIT",
   "peerDependencies": {
     "react-native": ">= 0.41.2"
