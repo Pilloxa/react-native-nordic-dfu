@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version      = package['version']
   s.summary      = package['description']
 
-  s.authors      = { "Viktor Eriksson" => "viktor.eriksson2@gmail.com" }
+  s.authors      = { "Pilloxa" => "recruitment@pilloxa.com" }
   s.homepage     = "https://github.com/Pilloxa/react-native-nordic-dfu"
   s.license      = "Apache License 2.0"
   s.platform     = :ios, "8.0"
