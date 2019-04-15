@@ -1,0 +1,27 @@
+platform :ios, "9.0"
+
+# External dependencies contain Swift, important to add this line
+use_frameworks!
+
+target "NordicDFUExample" do
+  # Standard React Native dependencies when using CocoaPods
+  pod "yoga", path: "../node_modules/react-native/ReactCommon/yoga"
+  pod "DoubleConversion", podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  pod "glog", podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  pod "Folly", podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+  pod "React", path: "../node_modules/react-native", subspecs: [
+        "Core",
+        "CxxBridge",
+        "DevSupport",
+        "RCTBlob",
+        "RCTImage",
+        "RCTLinkingIOS",
+        "RCTText",
+      ]
+
+  pod "react-native-ble-manager", path: "../node_modules/react-native-ble-manager"
+
+  # replace this path with "../node_modules/react-native-nordic-dfu" or wherever
+  # it's installed in your project
+  pod "react-native-nordic-dfu", path: "../../"
+end

@@ -16,7 +16,7 @@ react-native link react-native-nordic-dfu
 
 ### iOS
 
-The iOS version of this library has native dependencies that need to be installed via `CocoaPods`, which is currently the only supported method for installing this library.
+The iOS version of this library has native dependencies that need to be installed via `CocoaPods`, which is currently the only supported method for installing this library. (PR's for alternative installation methods are welcome!)
 
 Previous versions supported manual linking, but this was prone to errors every time a new version of XCode and/or Swift was released, which is why this support was dropped. If you've previously installed this library manually, you'll want to remove the old installation and replace it with CocoaPods.
 
@@ -106,9 +106,25 @@ DFUEmitter.addListener("DFUStateChanged", ({state}) => {
 })
 ```
 
-## Full Example
+## Example project
 
-See: [example/index.js](example/index.android.js)
+Navigate to `example/` and run
+
+```bash
+npm install
+```
+
+Run the iOS project with
+
+```bash
+react-native run-ios
+```
+
+and the Android project with
+
+```bash
+react-native run-android
+```
 
 ## Development
 
