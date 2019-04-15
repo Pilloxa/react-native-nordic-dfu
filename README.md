@@ -5,15 +5,50 @@ nrf52 chip from Nordic Semiconductor. It works for both iOS and Android.
 
 For more info about the DFU process, see: [Resources](#resources)
 
-## Getting started
+## Installation
 
-`$ yarn add react-native-nordic-dfu`
+Install and link the NPM package per usual with
 
-### Mostly automatic installation
+```bash
+npm install --save react-native-nordic-dfu
+react-native link react-native-nordic-dfu
+```
 
-`$ react-native link react-native-nordic-dfu`
+### iOS
 
-**NOTE FOR iOS**: After linking the library you must perform step **4-10** of the Manual installation for iOS below.
+The iOS version of this library has native dependencies that need to be installed via `CocoaPods`, which is currently the only supported method for installing this library.
+
+Previous versions supported manual linking, but this was prone to errors every time a new version of XCode and/or Swift was released, which is why this support was dropped. If you've previously installed this library manually, you'll want to remove the old installation and replace it with CocoaPods.
+
+#### CocoaPods
+
+Add the following to your `Podfile`
+
+```ruby
+target "YourApp" do
+  ...
+
+  pod "react-native-nordic-dfu", path: "../node_modules/react-native-nordic-dfu"
+
+  ...
+end
+```
+
+and in the same folder as the Podfile run
+
+```bash
+pod install
+```
+
+#### Bluetooth integration
+
+This library needs access to an instance of `CBCentralManager`, which you most likely will have instantiated already if you're using Bluetooth for other purposes than DFU in your project.
+
+To integrate with your existing Bluetooth setup, call `[RNNordicDfu setCentralManagerGetter:<...>]` with a block argument that returns your `CBCentralManager` instance.
+
+If you want control over the `CBCentralManager` instance after the DFU process is done you might need to provide the `onDFUComplete` and `onDFUError` callbacks to transfer back delegate control.
+
+The example project shows how this may be done.
 
 ## API
 
@@ -75,51 +110,9 @@ DFUEmitter.addListener("DFUStateChanged", ({state}) => {
 
 See: [example/index.js](example/index.android.js)
 
-## Manual installation
+## Development
 
-### iOS with Podspec
-
-1. Run `react-native link react-native-nordic-dfu`
-2. Use step 9. and 10. of next guide if need be
-
-### iOS Manual Linking
-
-1.  In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2.  Go to `node_modules` ➜ `react-native-nordic-dfu` and add `RNNordicDfu.xcodeproj`
-3.  In XCode, in the project navigator, select your project. Add `libRNNordicDfu.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4.  Drag and drop `Zip.framework` and `iOSDFULibrary.framework` into your project
-5.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a `recursive` framework search path under `[your project] > Build Settings > Search Paths > Framework Search Paths`
-6.  Add `$(SRCROOT)/../node_modules/react-native-nordic-dfu/ios` as a header search path under `[your project] > Build Settings > Search Paths > Header Search Paths`
-7.  Add both frameworks under `[your project] > General > Embedded binaries`
-8.  Ensure that `[your project] > Build Settings > Build Options > Always Embed Swift Standard Libraries` is set to `Yes`
-9.  Call `[RNNordicDfu setCentralManagerGetter:<...>]` with a block argument that returns your `CBCentralManager` instance (see example project for how this may be done). It is assumed that you have initiated this instance outside of this library, for flexibility.
-10.  If you want control over the `CBCentralManager` instance after the DFU process is done you might need to provide the `onDFUComplete` and `onDFUError` callbacks to transfer back delegate control (see example project).
-11. Run your project (`Cmd+R`)&lt;
-
-### Android
-
-1.  Open up `android/app/src/main/java/[...]/MainActivity.java`
-
--   Add `import com.pilloxa.RNNordicDfuPackage;` to the imports at the top of the file
--   Add `new RNNordicDfuPackage()` to the list returned by the `getPackages()` method
-
-2.  Append the following lines to `android/settings.gradle`:
-        include ':react-native-nordic-dfu'
-        project(':react-native-nordic-dfu').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-nordic-dfu/android')
-3.  Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-          compile project(':react-native-nordic-dfu')
-
-## Development and contribution
-
-### iOS
-
-This package contains pre-built frameworks for Nordic's native DFU library. To upgrade to the latest version of this library:
-
-1.  Update library version in `ios/Cartfile`
-2.  Navigate to `ios/`
-3.  Execute `carthage update --platform iOS`
-4.  Copy the files `Zip.framework` and `iOSDFULibrary.framework` to `ios/`
-5.  Rebuild demo project
+PR's are always welcome!
 
 ## Resources
 
