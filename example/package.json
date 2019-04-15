@@ -1,25 +1,17 @@
 {
-	"name": "NordicDFUExample",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "16.0.0-alpha.12",
-		"react-native": "0.45.1",
-		"react-native-ble-manager": "6.2.0",
-		"react-native-fetch-blob": "^0.10.6",
-		"react-native-nordic-dfu": "file:../"
-	},
-	"devDependencies": {
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.0.0",
-		"jest": "20.0.4",
-		"react-test-renderer": "16.0.0-alpha.12"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+    "name": "NordicDFUExample",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "postinstall": "(cd ios && pod install)",
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "test": "jest"
+    },
+    "dependencies": {
+        "react": "16.8.3",
+        "react-native": "0.59.4",
+        "react-native-ble-manager": "6.6.2",
+        "react-native-nordic-dfu": "file:../",
+        "rn-fetch-blob": "^0.10.12"
+    }
 }

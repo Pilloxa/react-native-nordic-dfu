@@ -44,6 +44,5 @@ buck-out/
 \.buckd/
 *.keystore
 
-# Carthage
-ios/Cartfile.resolved
-ios/Carthage/
+# CocoaPods
+Pods/
