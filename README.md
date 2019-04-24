@@ -40,6 +40,8 @@ and in the same folder as the Podfile run
 pod install
 ```
 
+Since there's native Swift dependencies you need to set which Swift version your project complies with. If you haven't already done this, open up your project with XCode and add a User-Defined setting under Build Settings: `SWIFT_VERSION = 5.0`.
+
 #### Bluetooth integration
 
 This library needs access to an instance of `CBCentralManager`, which you most likely will have instantiated already if you're using Bluetooth for other purposes than DFU in your project.
