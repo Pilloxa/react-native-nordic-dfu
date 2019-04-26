@@ -27,7 +27,8 @@ Add the following to your `Podfile`
 ```ruby
 target "YourApp" do
   ...
-
+  
+  use_frameworks!
   pod "react-native-nordic-dfu", path: "../node_modules/react-native-nordic-dfu"
 
   ...
