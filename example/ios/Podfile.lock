@@ -12,7 +12,7 @@ PODS:
     - React/Core (= 0.59.4)
   - react-native-ble-manager (6.6.2):
     - React
-  - react-native-nordic-dfu (2.0.1):
+  - react-native-nordic-dfu (3.0.0):
     - iOSDFULibrary (~> 4.4.0)
     - React
     - ZIPFoundation (~> 0.9.8)
@@ -59,6 +59,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - rn-fetch-blob (0.10.6):
+    - React/Core
   - yoga (0.59.4.React)
   - ZIPFoundation (0.9.9)
 
@@ -75,6 +77,7 @@ DEPENDENCIES:
   - React/RCTImage (from `../node_modules/react-native`)
   - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
+  - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -96,6 +99,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-ble-manager"
   react-native-nordic-dfu:
     :path: "../../"
+  rn-fetch-blob:
+    :path: "../node_modules/rn-fetch-blob"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -107,10 +112,11 @@ SPEC CHECKSUMS:
   iOSDFULibrary: cd43d0c1db731dbc116a67d55ea23d4c39d16c40
   React: 5cb71fb1a15b5ce04794ab49e24b48ebe4c94e65
   react-native-ble-manager: ea54402df086ead2c234e360b41606f206a2e8b8
-  react-native-nordic-dfu: db54ecf795eba973fba02c536ed0430fe171d68a
+  react-native-nordic-dfu: 13c96e0093d89d9a018ac4cffce6c964436756b1
+  rn-fetch-blob: 766f85cabd2992300dfa1be2bc9e4e258abc6f04
   yoga: 596e61c9b57751d08a22b07aba310dbd3e65ab75
   ZIPFoundation: 89df685c971926b0323087952320bdfee9f0b6ef
 
-PODFILE CHECKSUM: cff05a95fe53823a3f86037236422320c8d41b6e
+PODFILE CHECKSUM: cb820ecf6246ea4ab1fde3a11b0880f6cc0f1108
 
 COCOAPODS: 1.6.1

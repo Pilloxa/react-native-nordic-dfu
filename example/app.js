@@ -16,7 +16,7 @@ import {
   Image
 } from "react-native";
 import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
-import RNFetchBlob from "react-native-fetch-blob";
+import RNFetchBlob from "rn-fetch-blob";
 import BleManager from "react-native-ble-manager";
 
 const BleManagerModule = NativeModules.BleManager;
