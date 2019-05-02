@@ -14,6 +14,18 @@ npm install --save react-native-nordic-dfu
 react-native link react-native-nordic-dfu
 ```
 
+### Minimum requirements
+
+This project has been verified to work with the following dependencies, though other versions may work as well.
+
+| Dependency | Version |
+|-|-|
+| React Native | 0.59.4 |  
+| XCode | 10.2 |
+| Swift | 5.0 |
+| CocoaPods | 1.6.1 |
+| Gradle | 5.3.1 |
+
 ### iOS
 
 The iOS version of this library has native dependencies that need to be installed via `CocoaPods`, which is currently the only supported method for installing this library. (PR's for alternative installation methods are welcome!)
@@ -41,7 +53,7 @@ and in the same folder as the Podfile run
 pod install
 ```
 
-Since there's native Swift dependencies you need to set which Swift version your project complies with. If you haven't already done this, open up your project with XCode and add a User-Defined setting under Build Settings: `SWIFT_VERSION = 5.0`.
+Since there's native Swift dependencies you need to set which Swift version your project complies with. If you haven't already done this, open up your project with XCode and add a User-Defined setting under Build Settings: `SWIFT_VERSION = <your-swift-version>`.
 
 #### Bluetooth integration
 
