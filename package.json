@@ -35,5 +35,6 @@
       "npm run document",
       "git add README.md"
     ]
-  }
+  },
+  "types": "./index.d.ts"
 }
