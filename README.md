@@ -15,8 +15,8 @@ This is an unofficial fork and is NOT actively maintained.
 Install and link the NPM package per usual with
 
 ```bash
-npm install --save react-native-nordic-dfu
-react-native link react-native-nordic-dfu
+npm install --save react-native-nordic-dfu-aan-patch
+react-native link react-native-nordic-dfu-aan-patch
 ```
 
 ### Minimum requirements

@@ -1,10 +1,10 @@
 {
   "name": "react-native-nordic-dfu-aan-patch",
-  "version": "3.0.1-aan-patch",
+  "version": "3.0.1-aan-patch-beta",
   "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",
-  "url": "https://github.com/Pilloxa/react-native-nordic-dfu",
-  "repository": "Pilloxa/react-native-nordic-dfu",
+  "url": "https://github.com/townofdon/react-native-nordic-dfu",
+  "repository": "townofdon/react-native-nordic-dfu",
   "scripts": {
     "test": "echo \"No test specified\"",
     "precommit": "lint-staged",
@@ -15,7 +15,7 @@
     "dfu",
     "nordic"
   ],
-  "author": "Pilloxa <recruitment@pilloxa.com>",
+  "author": "townofdon <townofdon@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "react-native": ">= 0.45.1"
