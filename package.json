@@ -1,5 +1,5 @@
 {
-  "name": "react-native-nordic-dfu",
+  "name": "react-native-nordic-dfu-aan-patch",
   "version": "3.0.1-aan-patch",
   "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",

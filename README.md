@@ -5,6 +5,11 @@ nrf52 chip from Nordic Semiconductor. It works for both iOS and Android.
 
 For more info about the DFU process, see: [Resources](#resources)
 
+## Alternative Advertising Name (AAN) patch
+
+Hello! This is a fork of the [react-native-nordic-dfu](https://github.com/Pilloxa/react-native-nordic-dfu) repo.
+This is an unofficial fork and is NOT actively maintained.
+
 ## Installation
 
 Install and link the NPM package per usual with
