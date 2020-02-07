@@ -1,4 +1,4 @@
-declare module 'react-native-nordic-dfu' {
+declare module 'react-native-nordic-dfu-aan-patch' {
   export class NordicDFU {
     static startDFU({
       deviceAddress,
