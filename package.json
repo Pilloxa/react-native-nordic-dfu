@@ -1,6 +1,6 @@
 {
   "name": "react-native-nordic-dfu-aan-patch",
-  "version": "3.0.1-aan-patch-beta",
+  "version": "3.0.1-aan-patch-1.1",
   "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",
   "url": "https://github.com/townofdon/react-native-nordic-dfu",
