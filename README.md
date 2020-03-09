@@ -112,7 +112,7 @@ Event emitter for DFU state and progress events
 ```javascript
 import { NordicDFU, DFUEmitter } from "react-native-nordic-dfu";
 
-DFUEmitter.addlistener("DFUProgress",({percent, currentPart, partsTotal, avgSpeed, speed}) => {
+DFUEmitter.addListener("DFUProgress",({percent, currentPart, partsTotal, avgSpeed, speed}) => {
   console.log("DFU progress: " + percent +"%");
 });
 
