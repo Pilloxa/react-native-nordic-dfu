@@ -24,7 +24,7 @@ function rejectPromise(message) {
  * @param {string} obj.deviceAddress The MAC address for the device that should be updated
  * @param {string} [obj.deviceName = null] The name of the device in the update notification
  * @param {string} obj.filePath The file system path to the zip-file used for updating
- * @param {Boolean} obj.alternativeAdvertisingNameEnabled Send unique name to device before it is switched into bootloader mode
+ * @param {Boolean} obj.alternativeAdvertisingNameEnabled Send unique name to device before it is switched into bootloader mode (iOS only)
  * @returns {Promise} A promise that resolves or rejects with the `deviceAddress` in the return value
  *
  * @example
@@ -51,7 +51,10 @@ function startDFU({
     return rejectPromise("No filePath defined");
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
-  return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, alternativeAdvertisingNameEnabled);
+  if (Platform.OS === 'ios') {
+    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, alternativeAdvertisingNameEnabled);
+  }
+  return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
 }
 
 /**
