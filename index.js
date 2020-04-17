@@ -17,11 +17,14 @@ function rejectPromise(message) {
  * the actual connect and then the transfer. See the example project to see how it can be
  * done in React Native.
  *
+ * For `alternativeAdvertisingNameEnabled` option below, see:
+ * https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/blob/master/iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift#L191
  *
  * @param {Object} obj
  * @param {string} obj.deviceAddress The MAC address for the device that should be updated
  * @param {string} [obj.deviceName = null] The name of the device in the update notification
  * @param {string} obj.filePath The file system path to the zip-file used for updating
+ * @param {Boolean} obj.alternativeAdvertisingNameEnabled Send unique name to device before it is switched into bootloader mode (iOS only)
  * @returns {Promise} A promise that resolves or rejects with the `deviceAddress` in the return value
  *
  * @example
@@ -35,7 +38,12 @@ function rejectPromise(message) {
  *   .then(res => console.log("Transfer done:", res))
  *   .catch(console.log);
  */
-function startDFU({ deviceAddress, deviceName = null, filePath }) {
+function startDFU({
+  deviceAddress,
+  deviceName = null,
+  filePath,
+  alternativeAdvertisingNameEnabled = true
+}) {
   if (deviceAddress == undefined) {
     return rejectPromise("No deviceAddress defined");
   }
@@ -43,6 +51,9 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
     return rejectPromise("No filePath defined");
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
+  if (Platform.OS === 'ios') {
+    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, alternativeAdvertisingNameEnabled);
+  }
   return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
 }
 
