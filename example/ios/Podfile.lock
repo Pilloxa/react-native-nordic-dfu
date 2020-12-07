@@ -6,16 +6,15 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - iOSDFULibrary (4.4.1):
-    - ZIPFoundation (~> 0.9.9)
+  - iOSDFULibrary (4.9.0):
+    - ZIPFoundation (= 0.9.11)
   - React (0.59.4):
     - React/Core (= 0.59.4)
   - react-native-ble-manager (6.6.2):
     - React
-  - react-native-nordic-dfu (3.0.0):
-    - iOSDFULibrary (~> 4.4.0)
+  - react-native-nordic-dfu (3.1.1):
+    - iOSDFULibrary (~> 4.9.0)
     - React
-    - ZIPFoundation (~> 0.9.8)
   - React/Core (0.59.4):
     - yoga (= 0.59.4.React)
   - React/CxxBridge (0.59.4):
@@ -62,7 +61,7 @@ PODS:
   - rn-fetch-blob (0.10.6):
     - React/Core
   - yoga (0.59.4.React)
-  - ZIPFoundation (0.9.9)
+  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -81,7 +80,7 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - boost-for-react-native
     - iOSDFULibrary
     - ZIPFoundation
@@ -109,14 +108,14 @@ SPEC CHECKSUMS:
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  iOSDFULibrary: cd43d0c1db731dbc116a67d55ea23d4c39d16c40
+  iOSDFULibrary: 4dc9e1b6ef296c5fbcdff8abca77b54397f10777
   React: 5cb71fb1a15b5ce04794ab49e24b48ebe4c94e65
   react-native-ble-manager: ea54402df086ead2c234e360b41606f206a2e8b8
-  react-native-nordic-dfu: 13c96e0093d89d9a018ac4cffce6c964436756b1
+  react-native-nordic-dfu: 5768726f28998b2447b7df516d9a5c9cc7378f1c
   rn-fetch-blob: 766f85cabd2992300dfa1be2bc9e4e258abc6f04
   yoga: 596e61c9b57751d08a22b07aba310dbd3e65ab75
-  ZIPFoundation: 89df685c971926b0323087952320bdfee9f0b6ef
+  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
 PODFILE CHECKSUM: cb820ecf6246ea4ab1fde3a11b0880f6cc0f1108
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.10.0

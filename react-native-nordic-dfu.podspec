@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.source_files  = "ios/**/*.{h,m}"
 
   s.dependency 'React'
-  s.dependency 'iOSDFULibrary', '~> 4.7.1'
+  s.dependency 'iOSDFULibrary', '~> 4.9.0'
 end
