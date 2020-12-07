@@ -52,3 +52,7 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 jsconfig.json
+
+# add your own firmware and put it here
+ios/NordicDFUExample/app.zip
+android/app/src/main/assets/firmware/app.zip
