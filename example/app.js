@@ -34,8 +34,9 @@ export default class NordicDFUExample extends Component {
     this.handleDeviceDiscovered = this.handleDeviceDiscovered.bind(this);
     this.startScan = this.startScan.bind(this);
     this.handleStopScan = this.handleStopScan.bind(this);
+    console.log('firmwarePath', props.firmwarePath);
     this.state = {
-      imagefile: false,
+      imagefile: props.firmwarePath,
       scanning: false,
       deviceFound: false,
       dfuState: "Not started",
@@ -71,6 +72,7 @@ export default class NordicDFUExample extends Component {
 
   startDFU() {
     console.log("Starting DFU");
+    // Change this to the name of your device, if needed
     NordicDFU.startDFU({
       deviceAddress: DEVICE_ID,
       name: "Pilloxa Board",
@@ -81,8 +83,16 @@ export default class NordicDFUExample extends Component {
   }
 
   // #### BLUETOOTH #################################################
+  ids = new Set()
 
-  handleDeviceDiscovered({ id }) {
+  handleDeviceDiscovered({ id, name }) {
+    if (!this.ids.has(id)) {
+      this.ids.add(id)
+      // Read the log and when you see the id of the device you 
+      // want to DFU, paste it into DEVICE_ID above and rerun
+      // the app
+      console.log("handleDeviceDiscovered", id, name);
+    }
     if (id == DEVICE_ID) {
       this.setState({
         deviceFound: true,

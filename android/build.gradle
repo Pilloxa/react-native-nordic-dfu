@@ -38,6 +38,6 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'no.nordicsemi.android:dfu:1.8.0'
+    implementation 'no.nordicsemi.android:dfu:1.11.1'
 }
   
