@@ -30,7 +30,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String filePath, Promise promise) {
+    public void startDFU(String address, String name, String filePath, int packetReceiptNotificationParameter, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
@@ -39,6 +39,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         }
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
         starter.setZip(filePath);
+        starter.setPacketReceiptNotificationParameter = packetReceiptNotificationParameter;
         final DfuServiceController controller = starter.start(this.reactContext, DfuService.class);
     }
 
