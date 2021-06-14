@@ -25,6 +25,7 @@ function rejectPromise(message) {
  * @param {string} [obj.deviceName = null] The name of the device in the update notification
  * @param {string} obj.filePath The file system path to the zip-file used for updating
  * @param {Boolean} obj.alternativeAdvertisingNameEnabled Send unique name to device before it is switched into bootloader mode (iOS only)
+ * @param {number} obj.packetReceiptNotificationParameter set number of packets of firmware data to be received by the DFU target before sending a new Packet Receipt Notification
  * @returns {Promise} A promise that resolves or rejects with the `deviceAddress` in the return value
  *
  * @example
@@ -42,7 +43,8 @@ function startDFU({
   deviceAddress,
   deviceName = null,
   filePath,
-  alternativeAdvertisingNameEnabled = true
+  alternativeAdvertisingNameEnabled = true,
+  packetReceiptNotificationParameter = 12,
 }) {
   if (deviceAddress == undefined) {
     return rejectPromise("No deviceAddress defined");
@@ -52,9 +54,9 @@ function startDFU({
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
   if (Platform.OS === 'ios') {
-    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, alternativeAdvertisingNameEnabled);
+    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, packetReceiptNotificationParameter, alternativeAdvertisingNameEnabled);
   }
-  return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
+  return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, packetReceiptNotificationParameter);
 }
 
 /**
