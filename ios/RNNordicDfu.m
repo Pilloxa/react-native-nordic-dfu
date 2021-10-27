@@ -185,6 +185,7 @@ didOccurWithMessage:(NSString * _Nonnull)message
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
+                  alternativeAdvertisingNameEnabled:(BOOL *)alternativeAdvertisingNameEnabled
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -225,6 +226,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         initiator.logger = self;
         initiator.delegate = self;
         initiator.progressDelegate = self;
+        initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
 
         DFUServiceController * controller = [initiator start];
       }
