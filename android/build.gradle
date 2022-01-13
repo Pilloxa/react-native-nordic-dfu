@@ -40,4 +40,4 @@ dependencies {
     implementation 'com.facebook.react:react-native:+'
     implementation 'no.nordicsemi.android:dfu:1.8.0'
 }
-  
+

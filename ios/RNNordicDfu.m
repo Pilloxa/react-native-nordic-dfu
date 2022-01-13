@@ -207,6 +207,10 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
     } else {
       NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
 
+      // Change for iOS 13
+      [NSThread sleepForTimeInterval: 1]; //Work around for not finding the peripheral in iOS 13
+      // End change for iOS 13
+      
       NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
 
       if ([peripherals count] != 1) {
@@ -227,6 +231,11 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         initiator.delegate = self;
         initiator.progressDelegate = self;
         initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
+
+        // Change for iOS 13
+        initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
+        [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
+        // End change for iOS 13
 
         DFUServiceController * controller = [initiator start];
       }

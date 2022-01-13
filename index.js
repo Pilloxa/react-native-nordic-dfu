@@ -42,8 +42,11 @@ function startDFU({
   deviceAddress,
   deviceName = null,
   filePath,
-  alternativeAdvertisingNameEnabled = true
+  alternativeAdvertisingNameEnabled = true, //iOS only
+  retries = 3, // Android only
+  maxMtu = 23, // Android only
 }) {
+
   if (deviceAddress == undefined) {
     return rejectPromise("No deviceAddress defined");
   }
@@ -53,8 +56,14 @@ function startDFU({
   const upperDeviceAddress = deviceAddress.toUpperCase();
   if (Platform.OS === 'ios') {
     return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, alternativeAdvertisingNameEnabled);
+  } else if (Platform.OS === 'android') {
+    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, {
+      retries,
+      maxMtu
+    });
+  } else {
+    throw new Error('Platform not supported (not android or ios)');
   }
-  return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
 }
 
 /**
