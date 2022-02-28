@@ -213,10 +213,17 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
       } else {
         CBPeripheral * peripheral = [peripherals objectAtIndex:0];
+        DFUFirmware * firmware;
 
         NSURL * url = [NSURL URLWithString:filePath];
+        NSString * extension = [url pathExtension];
 
-        DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
+        if (([extension caseInsensitiveCompare:@"bin"] == NSOrderedSame) ||
+              ([extension caseInsensitiveCompare:@"hex"] == NSOrderedSame)) {
+            firmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:url urlToDatFile:nil type:4];
+        } else {
+            firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
+        }
 
         DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
                                             initWithCentralManager:centralManager
