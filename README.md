@@ -1,13 +1,4 @@
-# react-native-nordic-dfu 
-
-## Fork changes
-
-This fork:
-* adds two timeouts to fix firmware uploads for iOS 13.
- It is the same fix as [this other fork](https://github.com/Jurpp/react-native-nordic-dfu) but on a later version of the trunk.
-* Upgraded library to no.nordicsemi.android:dfu:1.11.0.
-* Android retries configurable [retries](https://github.com/NordicSemiconductor/Android-DFU-Library#retrying).
-* Android max MTU configurable
+# react-native-nordic-dfu [![npm version](https://badge.fury.io/js/react-native-nordic-dfu.svg)](https://badge.fury.io/js/react-native-nordic-dfu) [![CircleCI](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu.svg?style=svg)](https://circleci.com/gh/Pilloxa/react-native-nordic-dfu) [![Known Vulnerabilities](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu/badge.svg)](https://snyk.io/test/github/pilloxa/react-native-nordic-dfu)
 
 This library allows you to do a Device Firmware Update (DFU) of your nrf51 or
 nrf52 chip from Nordic Semiconductor. It works for both iOS and Android.
@@ -16,10 +7,10 @@ For more info about the DFU process, see: [Resources](#resources)
 
 ## Installation
 
-Remove react-native-nordic-dfu from your package.json and yarn.lock files and run:
+Install and link the NPM package per usual with
 
-```
-yarn add https://github.com/DreamOnward/react-native-nordic-dfu
+```bash
+npm install --save react-native-nordic-dfu
 ```
 
 or
