@@ -42,6 +42,20 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         final DfuServiceController controller = starter.start(this.reactContext, DfuService.class);
     }
 
+    @ReactMethod
+    public void startDFU(String address, String name, String filePath, boolean disableNotification, Promise promise) {
+        mPromise = promise;
+        final DfuServiceInitiator starter = new DfuServiceInitiator(address)
+                .setKeepBond(false);
+        if (name != null) {
+            starter.setDeviceName(name);
+        }
+        starter.setDisableNotification(disableNotification);
+        starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
+        starter.setZip(filePath);
+        final DfuServiceController controller = starter.start(this.reactContext, DfuService.class);
+    }
+
     @Override
     public String getName() {
         return name;
