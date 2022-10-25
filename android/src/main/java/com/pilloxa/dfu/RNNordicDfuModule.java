@@ -30,7 +30,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String filePath, Promise promise) {
+    public void startDFU(String address, String name, String filePath, int packetReceiptNotificationParameter, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
@@ -39,6 +39,12 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         }
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
         starter.setZip(filePath);
+        // mimic behavior of iOSDFULibrary when packetReceiptNotificationParameter is set to `0` - see: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/blob/master/iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift#L115
+        if (packetReceiptNotificationParameter > 0) {
+          starter.setPacketsReceiptNotificationsValue(packetReceiptNotificationParameter);
+        } else {
+          starter.setPacketsReceiptNotificationsEnabled(false);
+        }
         final DfuServiceController controller = starter.start(this.reactContext, DfuService.class);
     }
 
