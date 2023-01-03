@@ -2271,11 +2271,9 @@ json-stable-stringify@^1.0.1:
     jsonify "~0.0.0"
 
 json5@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-2.1.0.tgz#e7a0c62c48285c628d20a10b85c89bb807c32850"
-  integrity sha512-8Mh9h6xViijj36g7Dxi+Y4S6hNGV96vcJZr/SrlHh1LR/pEn/8j/+qIBbs44YKl69Lrfctp4QD+AdWLTMqEZAQ==
-  dependencies:
-    minimist "^1.2.0"
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
+  integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
 jsonfile@^2.1.0:
   version "2.4.0"
@@ -3379,7 +3377,7 @@ react-native-ble-manager@6.6.2:
   integrity sha512-EJqG26zFEmS8tJ7tDWVAhB60j/5un4kJSLpurv7eE0IuGRd9htSJ5vb/9iGl2D75GsDHgknWjddG6OMGCPcwDg==
 
 "react-native-nordic-dfu@file:..":
-  version "3.0.0"
+  version "3.2.1"
 
 react-native@0.59.4:
   version "0.59.4"
