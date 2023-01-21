@@ -219,26 +219,25 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         CBPeripheral * peripheral = [peripherals objectAtIndex:0];
 
         NSURL * url = [NSURL URLWithString:filePath];
-        @try {
-            DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
-            DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
-                                                  initWithCentralManager:centralManager
-                                                  target:peripheral]
-                                                 withFirmware:firmware];
-            initiator.logger = self;
-            initiator.delegate = self;
-            initiator.progressDelegate = self;
-            initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
 
-              // Change for iOS 13
-            initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
-            [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
-              // End change for iOS 13
+        DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
 
-            DFUServiceController * controller = [initiator start];
-          } @catch (NSException *exception) {
-              reject(@"dfu_error",@"Could not init the DFU Firmware", nil);
-          }
+        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
+                                            initWithCentralManager:centralManager
+                                            target:peripheral]
+                                           withFirmware:firmware];
+
+        initiator.logger = self;
+        initiator.delegate = self;
+        initiator.progressDelegate = self;
+        initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
+
+        // Change for iOS 13
+        initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
+        [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
+        // End change for iOS 13
+
+        DFUServiceController * controller = [initiator start];
       }
     }
   }
