@@ -10,13 +10,13 @@ For more info about the DFU process, see: [Resources](#resources)
 Install and link the NPM package per usual with
 
 ```bash
-npm install --save react-native-nordic-dfu
+npm install --save https://github.com/Salt-PepperEngineering/react-native-nordic-dfu
 ```
 
 or
 
 ```bash
-yarn add react-native-nordic-dfu
+yarn add https://github.com/Salt-PepperEngineering/react-native-nordic-dfu
 ```
 
 For React Native below 60.0 version
