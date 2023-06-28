@@ -31,26 +31,37 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String filePath, int packetReceiptNotificationParameter, Promise promise) {
+    public void startDFU(String address, String name, String filePath, int packetReceiptNotificationParameter, ReadableMap options, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
+                
+        if (options.hasKey("retries")) {
+          int retries = options.getInt("retries");
+          starter.setNumberOfRetries(retries);
+        }
+
+        if (options.hasKey("maxMtu")) {
+          int mtu = options.getInt("maxMtu");
+          starter.setMtu(mtu);
+        }
         if (name != null) {
             starter.setDeviceName(name);
         }
-        starter.setPacketsReceiptNotificationsValue(1);
+          // mimic behavior of iOSDFULibrary when packetReceiptNotificationParameter is set to `0` - see: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/blob/master/iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift#L115
+        if (packetReceiptNotificationParameter > 0) {
+          starter.setPacketsReceiptNotificationsValue(packetReceiptNotificationParameter);
+        } else {
+          starter.setPacketsReceiptNotificationsValue(1);
+          starter.setPacketsReceiptNotificationsEnabled(false);
+        }
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
         if (filePath.endsWith(".bin") || filePath.endsWith(".hex")) {
             starter.setBinOrHex(DfuBaseService.TYPE_APPLICATION, filePath).setInitFile(null, null);
         } else {
             starter.setZip(filePath);
         }
-        // mimic behavior of iOSDFULibrary when packetReceiptNotificationParameter is set to `0` - see: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/blob/master/iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift#L115
-        if (packetReceiptNotificationParameter > 0) {
-          starter.setPacketsReceiptNotificationsValue(packetReceiptNotificationParameter);
-        } else {
-          starter.setPacketsReceiptNotificationsEnabled(false);
-        }
+      
         final DfuServiceController controller = starter.start(this.reactContext, DfuService.class);
     }
 
