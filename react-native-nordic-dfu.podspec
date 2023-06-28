@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Pilloxa/react-native-nordic-dfu.git" }
   s.source_files  = "ios/**/*.{h,m}"
 
-  s.dependency 'React'
+  s.dependency "React-Core"
   s.dependency 'iOSDFULibrary', '~> 4.13.0'
 end

@@ -49,6 +49,10 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         return name;
     }
 
+     @ReactMethod
+    public void removeListeners(int count) {
+      // Keep: Required for RN built in Event Emitter Calls.
+    }
 
     private void sendEvent(String eventName, @Nullable WritableMap params) {
         getReactApplicationContext()
