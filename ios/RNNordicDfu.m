@@ -1,6 +1,6 @@
 #import "RNNordicDfu.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-@import iOSDFULibrary;
+#import <iOSDFULibrary/iOSDFULibrary-Swift.h>
 
 static CBCentralManager * (^getCentralManager)();
 static void (^onDFUComplete)();
@@ -185,6 +185,7 @@ didOccurWithMessage:(NSString * _Nonnull)message
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
+                  packetReceiptNotificationParameter:(NSInteger *)packetReceiptNotificationParameter
                   alternativeAdvertisingNameEnabled:(BOOL *)alternativeAdvertisingNameEnabled
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
@@ -218,26 +219,41 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
       } else {
         CBPeripheral * peripheral = [peripherals objectAtIndex:0];
 
-        NSURL * url = [NSURL URLWithString:filePath];
 
-        DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
+        @try {
+            NSURL *url = [NSURL URLWithString:filePath];
+            DFUFirmware * firmware;
+            NSString * extension = [url pathExtension];
 
-        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
-                                            initWithCentralManager:centralManager
-                                            target:peripheral]
-                                           withFirmware:firmware];
+            if (([extension caseInsensitiveCompare:@"bin"] == NSOrderedSame) ||
+                  ([extension caseInsensitiveCompare:@"hex"] == NSOrderedSame)) {
+                firmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:url urlToDatFile:nil type:4 error:nil];
+            } else {
+                firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url error:nil];
+            }
 
-        initiator.logger = self;
-        initiator.delegate = self;
-        initiator.progressDelegate = self;
-        initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
+            DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
+                                                initWithCentralManager:centralManager
+                                                target:peripheral]
+                                               withFirmware:firmware];
 
-        // Change for iOS 13
-        initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
-        [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
-        // End change for iOS 13
+            initiator.logger = self;
+            initiator.delegate = self;
+            initiator.progressDelegate = self;
+            initiator.packetReceiptNotificationParameter = packetReceiptNotificationParameter;
+            initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
 
-        DFUServiceController * controller = [initiator start];
+            // Change for iOS 13
+            initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
+            [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
+            // End change for iOS 13
+
+            DFUServiceController * controller = [initiator start];
+            
+        } @catch (NSException *exception) {
+            NSLog(@"Error creating DFUFirmware: %@", exception.reason);
+            // Handle the error appropriately
+        }
       }
     }
   }
