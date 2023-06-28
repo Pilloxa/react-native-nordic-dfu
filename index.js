@@ -25,6 +25,7 @@ function rejectPromise(message) {
  * @param {string} [obj.deviceName = null] The name of the device in the update notification
  * @param {string} obj.filePath The file system path to the zip-file used for updating
  * @param {Boolean} obj.alternativeAdvertisingNameEnabled Send unique name to device before it is switched into bootloader mode (iOS only)
+ * @param {number} obj.packetReceiptNotificationParameter set number of packets of firmware data to be received by the DFU target before sending a new Packet Receipt Notification
  * @returns {Promise} A promise that resolves or rejects with the `deviceAddress` in the return value
  *
  * @example
@@ -43,10 +44,10 @@ function startDFU({
   deviceName = null,
   filePath,
   alternativeAdvertisingNameEnabled = true, //iOS only
+  packetReceiptNotificationParameter = 12,
   retries = 3, // Android only
   maxMtu = 23, // Android only
 }) {
-
   if (deviceAddress == undefined) {
     return rejectPromise("No deviceAddress defined");
   }
@@ -54,15 +55,27 @@ function startDFU({
     return rejectPromise("No filePath defined");
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
-  if (Platform.OS === 'ios') {
-    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, alternativeAdvertisingNameEnabled);
-  } else if (Platform.OS === 'android') {
-    return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath, {
-      retries,
-      maxMtu
-    });
+  if (Platform.OS === "ios") {
+    return RNNordicDfu.startDFU(
+      upperDeviceAddress,
+      deviceName,
+      filePath,
+      packetReceiptNotificationParameter,
+      alternativeAdvertisingNameEnabled
+    );
+  } else if (Platform.OS === "android") {
+    return RNNordicDfu.startDFU(
+      upperDeviceAddress,
+      deviceName,
+      filePath,
+      packetReceiptNotificationParameter,
+      {
+        retries,
+        maxMtu,
+      }
+    );
   } else {
-    throw new Error('Platform not supported (not android or ios)');
+    throw new Error("Platform not supported (not android or ios)");
   }
 }
 

@@ -185,6 +185,7 @@ didOccurWithMessage:(NSString * _Nonnull)message
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
+                  packetReceiptNotificationParameter:(NSInteger *)packetReceiptNotificationParameter
                   alternativeAdvertisingNameEnabled:(BOOL *)alternativeAdvertisingNameEnabled
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
@@ -221,8 +222,15 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
 
         @try {
             NSURL *url = [NSURL URLWithString:filePath];
+            DFUFirmware * firmware;
+            NSString * extension = [url pathExtension];
 
-            DFUFirmware *firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url error:nil];
+            if (([extension caseInsensitiveCompare:@"bin"] == NSOrderedSame) ||
+                  ([extension caseInsensitiveCompare:@"hex"] == NSOrderedSame)) {
+                firmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:url urlToDatFile:nil type:4 error:nil];
+            } else {
+                firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url error:nil];
+            }
 
             DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
                                                 initWithCentralManager:centralManager
@@ -232,6 +240,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
             initiator.logger = self;
             initiator.delegate = self;
             initiator.progressDelegate = self;
+            initiator.packetReceiptNotificationParameter = packetReceiptNotificationParameter;
             initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
 
             // Change for iOS 13
