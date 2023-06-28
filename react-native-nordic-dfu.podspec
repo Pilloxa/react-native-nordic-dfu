@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.authors      = { "Pilloxa" => "recruitment@pilloxa.com" }
   s.homepage     = "https://github.com/Pilloxa/react-native-nordic-dfu"
   s.license      = "Apache License 2.0"
-  s.platform     = :ios, "12.4"
+  s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/Pilloxa/react-native-nordic-dfu.git" }
   s.source_files  = "ios/**/*.{h,m}"
