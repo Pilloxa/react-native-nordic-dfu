@@ -36,6 +36,8 @@ Note: We are considering rewriting the ios module on Swift, but it depends very 
 
 `Podfile`:
 
+- Flipper Disabled
+
 ```ruby
 target "YourApp" do
 
@@ -43,6 +45,34 @@ target "YourApp" do
   pod "react-native-nordic-dfu", path: "../node_modules/react-native-nordic-dfu"
   ...
   use_frameworks! :linkage => :static
+  ...
+  :flipper_configuration => FlipperConfiguration.disabled,
+  ...
+
+end
+```
+
+- Flipper enabled
+
+```ruby
+static_frameworks = ['iOSDFULibrary']  
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if static_frameworks.include?(pod.name)
+      puts "Overriding the static_frameworks? method for #{pod.name}"
+      def pod.build_type;
+        Pod::BuildType.new(:linkage => :static, :packaging => :framework)
+      end
+    end
+  end
+end
+
+target "YourApp" do
+
+  ...
+  pod "react-native-nordic-dfu", path: "../node_modules/react-native-nordic-dfu"
+  ...
+  :flipper_configuration => FlipperConfiguration.enabled,
   ...
 
 end
@@ -77,7 +107,11 @@ end
 }
 ```
 
-## Resources
+### Issues
+
+- For configuration issues please also check this (https://github.com/Pilloxa/react-native-nordic-dfu/issues/171)
+
+### Resources
 
 - [DFU Introduction](http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v11.0.0/examples_ble_dfu.html?cp=6_0_0_4_3_1 "BLE Bootloader/DFU")
 - [Secure DFU Introduction](http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.sdk5.v12.0.0/ble_sdk_app_dfu_bootloader.html?cp=4_0_0_4_3_1 "BLE Secure DFU Bootloader")
