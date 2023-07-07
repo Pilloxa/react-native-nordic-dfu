@@ -37,9 +37,5 @@
       "git add README.md"
     ]
   },
-  "types": "./index.d.ts",
-  "dependencies": {
-    "react-native-blob-util": "^0.18.3",
-    "react-native-fs": "^2.20.0"
-  }
+  "types": "./index.d.ts"
 }
