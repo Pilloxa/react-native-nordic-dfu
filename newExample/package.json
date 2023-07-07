@@ -13,6 +13,8 @@
     "react": "18.2.0",
     "react-native": "0.72.1",
     "react-native-ble-manager": "^10.1.2",
+    "react-native-blob-util": "^0.18.3",
+    "react-native-fs": "^2.20.0",
     "react-native-nordic-dfu": "../../react-native-nordic-dfu"
   },
   "devDependencies": {
