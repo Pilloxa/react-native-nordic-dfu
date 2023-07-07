@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "setup": "rm -rf node_modules && yarn install && cd ios && rm -rf Podfile.lock && pod install && cd .. && cd android && ./gradlew clean && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",

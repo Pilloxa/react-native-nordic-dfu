@@ -57,7 +57,7 @@ end
 - Flipper enabled
 
 ```ruby
-static_frameworks = ['iOSDFULibrary']  
+static_frameworks = ['iOSDFULibrary']
 pre_install do |installer|
   installer.pod_targets.each do |pod|
     if static_frameworks.include?(pod.name)
@@ -108,6 +108,17 @@ end
 
 }
 ```
+
+### New Example
+
+1. `cd newExample`
+2. `yarn setup`
+3. Go to `newExample/App.tsx`
+4. Update the `filePath` variable with the link to the firmware file
+5. Update the `BleManagerService.init('', '');` function with the DFU Service & the device name
+6. Press `Connect to Device in Area` button
+7. When you see some small info about the device on the screen Press the `Start Update`
+8. If you have any problems connecting to the Device pleas consult the [react-native-ble-manager](https://github.com/innoveit/react-native-ble-manager)
 
 ### Issues
 
