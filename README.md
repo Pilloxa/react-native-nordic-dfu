@@ -5,9 +5,11 @@ nrf52 chip from Nordic Semiconductor. It works for both iOS and Android.
 
 For more info about the DFU process, see: [Resources](#resources)
 
-This is a fork from the main library!
-If need the main documentation you can find it [here](https://github.com/Pilloxa/react-native-nordic-dfu).
-This fork contains the latest verisons of `iOSDFULibrary` & `Android-BLE-Library`.
+### This is a fork from the main library!
+
+- Please keep in mind the our availability to maintain this fork is limited and is based on our project needs.
+- If need the main documentation you can find it [here](https://github.com/Pilloxa/react-native-nordic-dfu).
+- This fork contains the latest verisons of `iOSDFULibrary` & `Android-BLE-Library`.
 
 ### Installation
 
