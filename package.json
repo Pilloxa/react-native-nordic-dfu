@@ -1,6 +1,6 @@
 {
   "name": "react-native-nordic-dfu",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",
   "url": "https://github.com/Pilloxa/react-native-nordic-dfu",
