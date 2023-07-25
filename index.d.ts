@@ -1,15 +1,21 @@
-declare module 'react-native-nordic-dfu' {
+declare module "react-native-nordic-dfu" {
   export class NordicDFU {
     static startDFU({
       deviceAddress,
       deviceName,
       filePath,
-      alternativeAdvertisingNameEnabled
+      alternativeAdvertisingNameEnabled,
+      packetReceiptNotificationParameter,
+      retries,
+      maxMtu,
     }: {
       deviceAddress: string;
       deviceName?: string;
       filePath: string | null;
       alternativeAdvertisingNameEnabled?: boolean;
+      packetReceiptNotificationParameter?: number;
+      retries?: number;
+      maxMtu?: number;
     }): Promise<string>;
   }
 
@@ -24,10 +30,10 @@ declare module 'react-native-nordic-dfu' {
 
   export class DFUEmitter {
     static addListener(
-      name: 'DFUProgress' | 'DFUStateChanged',
+      name: "DFUProgress" | "DFUStateChanged",
       handler: (update: IDfuUpdate) => void
     ): void;
 
-    static removeAllListeners(name: 'DFUProgress' | 'DFUStateChanged'): void;
+    static removeAllListeners(name: "DFUProgress" | "DFUStateChanged"): void;
   }
 }
