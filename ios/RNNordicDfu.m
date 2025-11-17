@@ -185,8 +185,8 @@ didOccurWithMessage:(NSString * _Nonnull)message
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
-                  packetReceiptNotificationParameter:(NSInteger *)packetReceiptNotificationParameter
-                  alternativeAdvertisingNameEnabled:(BOOL *)alternativeAdvertisingNameEnabled
+                  packetReceiptNotificationParameter:(NSInteger)packetReceiptNotificationParameter
+                  alternativeAdvertisingNameEnabled:(BOOL)alternativeAdvertisingNameEnabled
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
