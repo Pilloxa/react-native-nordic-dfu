@@ -123,6 +123,7 @@ end
 ### Issues
 
 - For configuration issues please also check this (https://github.com/Pilloxa/react-native-nordic-dfu/issues/171)
+- `iOSDFULibrary` 4.15+ renamed its Swift module to `NordicDFU`. This library imports `<NordicDFU/NordicDFU-Swift.h>`. If you still see `'iOSDFULibrary/iOSDFULibrary-Swift.h' file not found`, upgrade to this fork version and clean your Xcode build folder.
 
 ### Resources
 
